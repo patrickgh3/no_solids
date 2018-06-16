@@ -71,10 +71,31 @@ if instance_exists(riding) {
         riding.image_blend = c_aqua
     }
     
-    if not pushedY and dY != 0 {
+    // riding upwards causes issues. pushing upwards should handle it already.
+    if not pushedY and dY != 0 /*dY*global.grav &gt; 0*/ {
         scrMoveContactObject(0, dY, objBlock)
         riding.image_blend = c_aqua
     }
+}
+
+// Snap to platforms
+var platLast = instance_place(xprevious, yprevious, objPlatform)
+var platCurrent = instance_place(x, y, objPlatform)
+if platLast != noone
+        and platCurrent != platLast
+        and y &lt; yprevious {
+    y = platLast.bbox_top - (sprite_height-sprite_get_yoffset(mask_index))
+    vspeed = 0
+    djump = true
+}
+
+if platCurrent != platLast
+        and platCurrent != noone
+        and not place_meeting(x, yprevious, platCurrent)
+        and y &gt; yprevious {
+    y = platCurrent.bbox_top - (sprite_height-sprite_get_yoffset(mask_index))
+    vspeed = 0
+    djump = true
 }
 
 // Collide with obstacles now after we've moved.
@@ -129,7 +150,9 @@ if onPlatform or onBlock {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>var blockOn = instance_place(x, y+global.grav, objBlock)
+            <string>show_debug_message('player')
+
+var blockOn = instance_place(x, y+global.grav, objBlock)
 
 // Reset pushed flags and update the riding object.
 
@@ -138,6 +161,9 @@ pushedY = false
 riding = noone
 if vspeed*global.grav &gt;= 0 {
     riding = blockOn
+    if riding == noone {
+        riding = instance_place(x, y+global.grav, objPlatform)
+    }
 }
 
 // Snap to riding object's fractional x coordinate.
@@ -210,16 +236,20 @@ if global.grav == 1 and vspeed &gt; maxVSpeed {
 
 if not frozen {
     if jumpPressed {
+        // Single jumping
         if place_meeting(x, y+global.grav, objBlock) or onPlatform or place_meeting(x, y+global.grav, objPlatform) {
             vspeed = -jump
             djump = true
             onPlatform = false
+        // Double jumping
         } else if djump {
             vspeed = -jump2
             djump = false
         }
     }
     
+    // Slow down your jump
+    // Note that jumping and slowing your jump on the same frame is a "jump cancel"
     if jumpReleased {
         if vspeed * global.grav &lt; 0 {
             vspeed *= 0.45

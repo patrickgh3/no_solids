@@ -26,9 +26,6 @@
           <argument>
             <kind>1</kind>
             <string>image_blend = c_white // debug
-
-//xprevious = x
-//yprevious = y
 </string>
           </argument>
         </arguments>
@@ -51,12 +48,22 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>var dX = x-xprevious
+            <string>/*
+3 behaviors:
+
+pressing
+pushing
+riding
+
+*/
+
+// The player and this block collide after movement.
+
+image_blend = c_fuchsia
+
+// Return both objects to their previous positions.
+var dX = x-xprevious
 var dY = y-yprevious
-
-// If the player and this block collide after movement:
-
-// Return the player and this block to their pre-moved positions.
 x = xprevious
 y = yprevious
 with other {
@@ -64,43 +71,47 @@ with other {
     y = yprevious
 }
 
-// Move the block by its hspeed and vspeed, pushing the player if in the way.
-// This is done first so that the player may then move right up against the block.
+// Move horizontally, pushing the player if it's in the way.
 if dX != 0 {
     x += dX
+    
     if place_meeting(x, y, other) and not place_meeting(x-dX, y, other) {
+        // Push right
         if dX &gt; 0 {
             other.x += (bbox_right+1) - other.bbox_left
-            other.xprevious = other.x
-
+        // Push left
         } else {
             other.x += bbox_left - (other.bbox_right+1)
-            other.xprevious = other.x
         }
         
+        other.xprevious = other.x
         other.pushedX = true
+        
         image_blend = c_lime
     }
 }
 
+// Move vertically, pushing the player if it's in the way.
 if dY != 0 {
     y += dY
+    
     if place_meeting(x, y, other) and not place_meeting(x, y-dY, other) {
+        // Push down
         if dY &gt; 0 {
             other.y += (bbox_bottom+1) - other.bbox_top
-            other.yprevious = other.y
-
+        // Push up
         } else {
             other.y += bbox_top - (other.bbox_bottom+1)
-            other.yprevious = other.y
         }
         
+        other.yprevious = other.y
         other.pushedY = true
+        
         image_blend = c_lime
     }
 }
 
-// Move the player by its hspeed and vspeed.
+// Move the player by its hspeed and vspeed, pressing up against blocks.
 with other {
     if place_meeting(x+hspeed, y, objBlock) {
         scrMoveContactObject(hspeed, 0, objBlock)
@@ -108,10 +119,10 @@ with other {
     }
     
     if place_meeting(x, y+vspeed, objBlock) {
+        scrMoveContactObject(0, vspeed, objBlock)
         if (global.grav == 1 and vspeed &gt; 0) or (global.grav == -1 and vspeed &lt; 0) {
             djump = true
         }
-        scrMoveContactObject(0, vspeed, objBlock)
         vspeed = 0
     }
     

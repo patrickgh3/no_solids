@@ -232,7 +232,7 @@ if global.debugMode {
     
     // Debug toggle frame rate.
     if keyboard_check(ord('F')) {
-        room_speed = 5
+        room_speed = 2
     } else {
         room_speed = 50
     }
