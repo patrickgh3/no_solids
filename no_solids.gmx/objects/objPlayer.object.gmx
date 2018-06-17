@@ -42,8 +42,6 @@ onPlatform = false
 frozen = false
 
 xScale = 1
-
-//riding = noone
 </string>
           </argument>
         </arguments>
@@ -133,28 +131,27 @@ if place_meeting(x, y, objPlayerKiller) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>xprevious = x
-yprevious = y
+            <string>var blockOn = instance_place(x, y + global.grav, objBlock)
 
-var blockOn = instance_place(x, y + global.grav, objBlock)
 
 /*
-
 // Reset pushed flags and update the riding object.
-
 pushedX = false
 pushedY = false
+
 riding = noone
+
 if ySpeed*global.grav &gt;= 0 {
     riding = blockOn
+    
     if riding == noone {
-        riding = instance_place(x, y+global.grav, objPlatform)
+        riding = instance_place(x, y + global.grav, objPlatform)
     }
 }
+*/
 
-
+/*
 // Snap to riding object's fractional x coordinate.
-
 if instance_exists(riding) {
     var fraction = riding.x - floor(riding.x)
     var myFraction = x - floor(x)
@@ -274,6 +271,24 @@ if onVineL or onVineR {
 
 ySpeed += yGravity
 
+
+if place_meeting(x + xSpeed, y, objBlock) {
+    scrMoveContactObject(xSpeed, 0, objBlock)
+    xSpeed = 0
+}
+
+if place_meeting(x, y + ySpeed, objBlock) {
+    scrMoveContactObject(0, ySpeed, objBlock)
+    if (global.grav == 1 and ySpeed &gt; 0) or (global.grav == -1 and ySpeed &lt; 0) {
+        djump = true
+    }
+    ySpeed = 0
+}
+
+if place_meeting(x + xSpeed, y + ySpeed, objBlock) {
+    xSpeed = 0
+}
+
 x += xSpeed
 y += ySpeed
 </string>
@@ -304,7 +319,7 @@ if global.grav == -1 {
     drawY ++
 }
 
-draw_sprite_ext(mask_index, image_index, x, drawY, xScale, global.grav, 0, c_white, 1)
+draw_sprite_ext(mask_index, image_index, x, drawY, 1, global.grav, 0, c_white, 1)
 </string>
           </argument>
         </arguments>

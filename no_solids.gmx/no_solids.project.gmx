@@ -57,15 +57,17 @@
   <objects name="objects">
     <object>objects\objPlayer</object>
     <object>objects\objBlock</object>
+    <object>objects\objBlockFollowMouse</object>
+    <object>objects\objPlatform</object>
+    <object>objects\objPlatformFollowMouse</object>
     <object>objects\objWorld</object>
     <object>objects\objPauseMenu</object>
     <object>objects\objCamera</object>
-    <object>objects\objPlatform</object>
-    <object>objects\objTestSinBlock</object>
     <object>objects\objVineR</object>
     <object>objects\objVineL</object>
     <object>objects\objGravityArrowUp</object>
     <object>objects\objGravityArrowDown</object>
+    <object>objects\objTestSinBlock</object>
     <objects name="Obstacles">
       <object>objects\objPlayerKiller</object>
       <object>objects\objSpikeUp</object>
