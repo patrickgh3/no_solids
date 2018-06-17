@@ -71,6 +71,7 @@
     <object>objects\objGravityArrowUp</object>
     <object>objects\objGravityArrowDown</object>
     <object>objects\objTestSinBlock</object>
+    <object>objects\objSwapBlocksForPlatforms</object>
     <objects name="Obstacles">
       <object>objects\objPlayerKiller</object>
       <object>objects\objSpikeUp</object>
