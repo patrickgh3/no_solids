@@ -55,13 +55,14 @@
     <script>scripts\scrMoveContactObject.gml</script>
     <script>scripts\scrMoveContactObjectWouldPress.gml</script>
     <script>scripts\scrMoveBlock.gml</script>
+    <script>scripts\scrWouldPressPlatform.gml</script>
   </scripts>
   <objects name="objects">
     <object>objects\objPlayer</object>
     <object>objects\objBlock</object>
     <object>objects\objBlockTestMotion</object>
     <object>objects\objPlatform</object>
-    <object>objects\objPlatformFollowMouse</object>
+    <object>objects\objPlatformTestMotion</object>
     <object>objects\objWorld</object>
     <object>objects\objPauseMenu</object>
     <object>objects\objCamera</object>
