@@ -71,6 +71,7 @@ with other {
     y = yprevious
 }
 
+/*
 // Move horizontally, pushing the player if it's in the way.
 if dX != 0 {
     x += dX
@@ -110,6 +111,7 @@ if dY != 0 {
         image_blend = c_lime
     }
 }
+*/
 
 // Move the player by its hspeed and vspeed, pressing up against blocks.
 with other {
@@ -126,10 +128,9 @@ with other {
         vspeed = 0
     }
     
-    // todo: is this necessary?
-    //if place_meeting(x+hspeed, y+vspeed, objBlock) {
-    //    hspeed = 0
-    //}
+    if place_meeting(x+hspeed, y+vspeed, objBlock) {
+        hspeed = 0
+    }
     
     x += hspeed
     y += vspeed

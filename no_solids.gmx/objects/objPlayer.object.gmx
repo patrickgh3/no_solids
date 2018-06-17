@@ -25,11 +25,14 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>jump = 8.5 * global.grav
-jump2 = 7 * global.grav
+            <string>jump = 8.5
+jump2 = 7
 gravity = 0.4 * global.grav
 maxSpeed = 3
 maxVSpeed = 9
+
+vineJumpHSpeed = 15
+vineJumpVSpeed = 9
 
 djump = true
 onPlatform = false
@@ -37,7 +40,7 @@ frozen = false
 
 xScale = 1
 
-riding = noone
+//riding = noone
 </string>
           </argument>
         </arguments>
@@ -60,7 +63,9 @@ riding = noone
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// Be carried by the instance we're riding.
+            <string>/*
+
+// Be carried by the instance we're riding.
 
 if instance_exists(riding) {
     var dX = riding.x - riding.xprevious
@@ -72,7 +77,7 @@ if instance_exists(riding) {
     }
     
     // riding upwards causes issues. pushing upwards should handle it already.
-    if not pushedY and dY != 0 /*dY*global.grav &gt; 0*/ {
+    if not pushedY and dY != 0 { // dY*global.grav &gt; 0
         scrMoveContactObject(0, dY, objBlock)
         riding.image_blend = c_aqua
     }
@@ -103,31 +108,6 @@ if platCurrent != platLast
 if place_meeting(x, y, objPlayerKiller) {
     scrKillPlayer()
 }
-
-// If we're somehow inside a block, which the collisions system should have prevented,
-// then we must have gotten squished. So, kill the player to prevent cheating through walls.
-
-/*if place_meeting(x, y, objBlock) {
-    scrKillPlayer()
-}*/
-
-// Update sprite now after we've moved.
-
-/*var onBlock = place_meeting(x, y+global.grav, objBlock) and vspeed*global.grav &gt;= 0
-
-if onPlatform or onBlock {
-    if L or R {
-        sprite_index = sprPlayerRun
-    } else {
-        sprite_index = sprPlayerIdle
-    }
-} else {
-    if vspeed * global.grav &lt; 0 {
-        sprite_index = sprPlayerJump
-    } else {
-        sprite_index = sprPlayerFall
-    }
-}*/
 </string>
           </argument>
         </arguments>
@@ -150,9 +130,9 @@ if onPlatform or onBlock {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>show_debug_message('player')
+            <string>var blockOn = instance_place(x, y + global.grav, objBlock)
 
-var blockOn = instance_place(x, y+global.grav, objBlock)
+/*
 
 // Reset pushed flags and update the riding object.
 
@@ -165,6 +145,7 @@ if vspeed*global.grav &gt;= 0 {
         riding = instance_place(x, y+global.grav, objPlatform)
     }
 }
+
 
 // Snap to riding object's fractional x coordinate.
 
@@ -191,31 +172,35 @@ if instance_exists(riding) {
         xprevious = x
     }
 }
+*/
+
 
 if onPlatform {
-    if not place_meeting(x, y+4*global.grav, objPlatform) {
+    if not place_meeting(x, y + 4 * global.grav, objPlatform) {
         onPlatform = false
     }
 }
 
 
-// Get keyboard input.
+var leftDown = scrButtonCheck(global.leftButton)
+var leftPressed = scrButtonCheckPressed(global.leftButton)
 
-L = scrButtonCheck(global.leftButton)
-R = scrButtonCheck(global.rightButton)
+var rightDown = scrButtonCheck(global.rightButton)
+var rightPressed = scrButtonCheckPressed(global.rightButton)
+
+var jumpDown = scrButtonCheck(global.jumpButton)
 var jumpPressed = scrButtonCheckPressed(global.jumpButton)
 var jumpReleased = scrButtonCheckReleased(global.jumpButton)
 
-// Set hspeed and vspeed based on game logic.
 
 var h = 0
 if not frozen {
-    if R h = 1
-    else if L h = -1
+    if rightDown h = 1
+    else if leftDown h = -1
 }
 
-var onVineL = place_meeting(x-1, y, objVineL) and blockOn == noone
-var onVineR = place_meeting(x+1, y, objVineR) and blockOn == noone
+var onVineL = place_meeting(x - 1, y, objVineL) and blockOn == noone
+var onVineR = place_meeting(x + 1, y, objVineR) and blockOn == noone
 
 if h != 0 {
     if not onVineR and not onVineL {
@@ -228,37 +213,56 @@ if h != 0 {
     hspeed = 0
 }
 
+
 if global.grav == 1 and vspeed &gt; maxVSpeed {
     vspeed = maxVSpeed
 } else if global.grav == -1 and vspeed &lt; -maxVSpeed {
     vspeed = -maxVSpeed
 }
 
+
 if not frozen {
     if jumpPressed {
-        // Single jumping
-        if place_meeting(x, y+global.grav, objBlock) or onPlatform or place_meeting(x, y+global.grav, objPlatform) {
-            vspeed = -jump
+        // Single jump
+        if place_meeting(x, y + global.grav, objBlock) or onPlatform or place_meeting(x, y + global.grav, objPlatform) {
+            vspeed = -jump * global.grav
             djump = true
             onPlatform = false
-        // Double jumping
-        } else if djump {
-            vspeed = -jump2
+        }
+
+        // Double jump
+        else if djump {
+            vspeed = -jump2 * global.grav
             djump = false
         }
     }
     
     // Slow down your jump
     // Note that jumping and slowing your jump on the same frame is a "jump cancel"
-    if jumpReleased {
-        if vspeed * global.grav &lt; 0 {
-            vspeed *= 0.45
-        }
+    if jumpReleased and vspeed * global.grav &lt; 0 {
+        vspeed *= 0.45
     }
 }
 
-if onVineL or onVineR {
 
+if onVineL or onVineR {
+    if onVineR xScale = -1
+    else xScale = 1
+    
+    vspeed = 2 * global.grav
+    
+    if (onVineL and rightPressed) or (onVineR and leftPressed) {
+        if jumpDown {
+            if onVineR hspeed = -vineJumpHSpeed
+            else hspeed = vineJumpHSpeed
+            
+            vspeed = -vineJumpVSpeed * global.grav
+        }
+        else {
+            if onVineR hspeed = -maxSpeed
+            else hspeed = maxSpeed
+        }
+    }
 }
 </string>
           </argument>
