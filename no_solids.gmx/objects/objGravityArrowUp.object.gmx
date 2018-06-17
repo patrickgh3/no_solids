@@ -28,7 +28,7 @@
             <string>if global.grav == 1 {
     scrSetGrav(-1)
     other.djump = true
-    other.vspeed = 0
+    other.ySpeed = 0
 }
 </string>
           </argument>

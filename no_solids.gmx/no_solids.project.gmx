@@ -21,7 +21,6 @@
     <sprite>sprites\sprPlayerMask</sprite>
     <sprite>sprites\sprBlockMask</sprite>
     <sprite>sprites\sprPlatformUp</sprite>
-    <sprite>sprites\sprPlatform</sprite>
     <sprite>sprites\sprVineR</sprite>
     <sprite>sprites\sprVineL</sprite>
     <sprite>sprites\sprGravityArrowUp</sprite>
@@ -62,7 +61,6 @@
     <object>objects\objPauseMenu</object>
     <object>objects\objCamera</object>
     <object>objects\objPlatform</object>
-    <object>objects\objPlatformOld</object>
     <object>objects\objTestSinBlock</object>
     <object>objects\objVineR</object>
     <object>objects\objVineL</object>

@@ -3,5 +3,5 @@
 
 global.grav = argument0
 with objPlayer {
-    gravity = abs(gravity) * global.grav
+    yGravity = abs(gravity) * global.grav
 }

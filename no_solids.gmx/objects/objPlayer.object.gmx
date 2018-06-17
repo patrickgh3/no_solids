@@ -25,14 +25,17 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>jump = 8.5
-jump2 = 7
-gravity = 0.4 * global.grav
-maxSpeed = 3
-maxVSpeed = 9
+            <string>yGravity = 0.4 * global.grav
+xSpeed = 0
+ySpeed = 0
 
-vineJumpHSpeed = 15
-vineJumpVSpeed = 9
+jump = 8.5
+jump2 = 7
+maxXSpeed = 3
+maxYSpeed = 9
+
+vineJumpXSpeed = 15
+vineJumpYSpeed = 9
 
 djump = true
 onPlatform = false
@@ -90,7 +93,7 @@ if platLast != noone
         and platCurrent != platLast
         and y &lt; yprevious {
     y = platLast.bbox_top - (sprite_height-sprite_get_yoffset(mask_index))
-    vspeed = 0
+    ySpeed = 0
     djump = true
 }
 
@@ -99,7 +102,7 @@ if platCurrent != platLast
         and not place_meeting(x, yprevious, platCurrent)
         and y &gt; yprevious {
     y = platCurrent.bbox_top - (sprite_height-sprite_get_yoffset(mask_index))
-    vspeed = 0
+    ySpeed = 0
     djump = true
 }
 
@@ -130,7 +133,10 @@ if place_meeting(x, y, objPlayerKiller) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>var blockOn = instance_place(x, y + global.grav, objBlock)
+            <string>xprevious = x
+yprevious = y
+
+var blockOn = instance_place(x, y + global.grav, objBlock)
 
 /*
 
@@ -139,7 +145,7 @@ if place_meeting(x, y, objPlayerKiller) {
 pushedX = false
 pushedY = false
 riding = noone
-if vspeed*global.grav &gt;= 0 {
+if ySpeed*global.grav &gt;= 0 {
     riding = blockOn
     if riding == noone {
         riding = instance_place(x, y+global.grav, objPlatform)
@@ -207,17 +213,17 @@ if h != 0 {
         xScale = h
     }
     if (h == -1 and not onVineR) or (h == 1 and not onVineL) {
-        hspeed = maxSpeed * h
+        xSpeed = maxXSpeed * h
     }
 } else {
-    hspeed = 0
+    xSpeed = 0
 }
 
 
-if global.grav == 1 and vspeed &gt; maxVSpeed {
-    vspeed = maxVSpeed
-} else if global.grav == -1 and vspeed &lt; -maxVSpeed {
-    vspeed = -maxVSpeed
+if global.grav == 1 and ySpeed &gt; maxYSpeed {
+    ySpeed = maxYSpeed
+} else if global.grav == -1 and ySpeed &lt; -maxYSpeed {
+    ySpeed = -maxYSpeed
 }
 
 
@@ -225,22 +231,22 @@ if not frozen {
     if jumpPressed {
         // Single jump
         if place_meeting(x, y + global.grav, objBlock) or onPlatform or place_meeting(x, y + global.grav, objPlatform) {
-            vspeed = -jump * global.grav
+            ySpeed = -jump * global.grav
             djump = true
             onPlatform = false
         }
 
         // Double jump
         else if djump {
-            vspeed = -jump2 * global.grav
+            ySpeed = -jump2 * global.grav
             djump = false
         }
     }
     
     // Slow down your jump
     // Note that jumping and slowing your jump on the same frame is a "jump cancel"
-    if jumpReleased and vspeed * global.grav &lt; 0 {
-        vspeed *= 0.45
+    if jumpReleased and ySpeed * global.grav &lt; 0 {
+        ySpeed *= 0.45
     }
 }
 
@@ -249,21 +255,27 @@ if onVineL or onVineR {
     if onVineR xScale = -1
     else xScale = 1
     
-    vspeed = 2 * global.grav
+    ySpeed = 2 * global.grav
     
     if (onVineL and rightPressed) or (onVineR and leftPressed) {
         if jumpDown {
-            if onVineR hspeed = -vineJumpHSpeed
-            else hspeed = vineJumpHSpeed
+            if onVineR xSpeed = -vineJumpXSpeed
+            else xSpeed = vineJumpXSpeed
             
-            vspeed = -vineJumpVSpeed * global.grav
+            ySpeed = -vineJumpYSpeed * global.grav
         }
         else {
-            if onVineR hspeed = -maxSpeed
-            else hspeed = maxSpeed
+            if onVineR xSpeed = -maxXSpeed
+            else xSpeed = maxXSpeed
         }
     }
 }
+
+
+ySpeed += yGravity
+
+x += xSpeed
+y += ySpeed
 </string>
           </argument>
         </arguments>

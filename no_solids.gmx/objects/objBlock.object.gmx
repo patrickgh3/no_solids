@@ -62,10 +62,12 @@ riding
 image_blend = c_fuchsia
 
 // Return both objects to their previous positions.
-var dX = x-xprevious
-var dY = y-yprevious
+var dX = x - xprevious
+var dY = y - yprevious
+
 x = xprevious
 y = yprevious
+
 with other {
     x = xprevious
     y = yprevious
@@ -113,27 +115,27 @@ if dY != 0 {
 }
 */
 
-// Move the player by its hspeed and vspeed, pressing up against blocks.
+// Move the player by its xSpeed and ySpeed, pressing up against blocks.
 with other {
-    if place_meeting(x+hspeed, y, objBlock) {
-        scrMoveContactObject(hspeed, 0, objBlock)
-        hspeed = 0
+    if place_meeting(x + xSpeed, y, objBlock) {
+        scrMoveContactObject(xSpeed, 0, objBlock)
+        xSpeed = 0
     }
     
-    if place_meeting(x, y+vspeed, objBlock) {
-        scrMoveContactObject(0, vspeed, objBlock)
-        if (global.grav == 1 and vspeed &gt; 0) or (global.grav == -1 and vspeed &lt; 0) {
+    if place_meeting(x, y + ySpeed, objBlock) {
+        scrMoveContactObject(0, ySpeed, objBlock)
+        if (global.grav == 1 and ySpeed &gt; 0) or (global.grav == -1 and ySpeed &lt; 0) {
             djump = true
         }
-        vspeed = 0
+        ySpeed = 0
     }
     
-    if place_meeting(x+hspeed, y+vspeed, objBlock) {
-        hspeed = 0
+    if place_meeting(x + xSpeed, y + ySpeed, objBlock) {
+        xSpeed = 0
     }
     
-    x += hspeed
-    y += vspeed
+    x += xSpeed
+    y += ySpeed
 }
 </string>
           </argument>
