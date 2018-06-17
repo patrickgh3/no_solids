@@ -45,6 +45,7 @@ if dX != 0 {
     x += dX
     
     var collided = instance_place(x, y, objPlayer)
+    
     if place_meeting(x, y, collided) and not place_meeting(x - dX, y, collided) {
         // Push right
         if dX &gt; 0 {
@@ -54,9 +55,6 @@ if dX != 0 {
         else {
             collided.x += bbox_left - (collided.bbox_right + 1)
         }
-        
-        //collided.xprevious = collided.x
-        //collided.pushedX = true
         
         image_blend = c_lime
     }
@@ -74,6 +72,7 @@ if dY != 0 {
     y += dY
     
     var collided = instance_place(x, y, objPlayer)
+    
     if place_meeting(x, y, collided) and not place_meeting(x, y - dY, collided) {
         // Push down
         if dY &gt; 0 {
@@ -83,9 +82,6 @@ if dY != 0 {
         else {
             collided.y += bbox_top - (collided.bbox_bottom + 1)
         }
-        
-        //collided.yprevious = collided.y
-        //collided.pushedY = true
         
         image_blend = c_lime
     }

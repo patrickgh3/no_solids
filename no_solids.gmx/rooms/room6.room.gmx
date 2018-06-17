@@ -70,8 +70,6 @@
     <instance objName="objVineL" x="64" y="224" name="inst_F380393C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objGravityArrowUp" x="64" y="320" name="inst_0C5718A5" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objGravityArrowDown" x="64" y="64" name="inst_2EDB2DFA" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objPlatform" x="320" y="288" name="inst_7F1122B4" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objPlatform" x="416" y="320" name="inst_441724F9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBlock" x="288" y="416" name="inst_C7316FA5" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBlock" x="320" y="416" name="inst_84381DAA" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBlock" x="352" y="416" name="inst_93A1CF32" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
