@@ -38,7 +38,6 @@ vineJumpXSpeed = 15
 vineJumpYSpeed = 9
 
 djump = true
-onPlatform = false
 frozen = false
 
 xScale = 1
@@ -178,13 +177,6 @@ if instance_exists(riding) {
 */
 
 
-if onPlatform {
-    if not place_meeting(x, y + 4 * global.grav, objPlatform) {
-        onPlatform = false
-    }
-}
-
-
 var leftDown = scrButtonCheck(global.leftButton)
 var leftPressed = scrButtonCheckPressed(global.leftButton)
 
@@ -227,7 +219,7 @@ if global.grav == 1 and ySpeed &gt; maxYSpeed {
 if not frozen {
     if jumpPressed {
         // Single jump
-        if place_meeting(x, y + global.grav, objBlock) or onPlatform or place_meeting(x, y + global.grav, objPlatform) {
+        if place_meeting(x, y + global.grav, objBlock) or place_meeting(x, y + global.grav, objPlatform) {
             ySpeed = -jump * global.grav
             djump = true
             onPlatform = false
@@ -272,20 +264,26 @@ if onVineL or onVineR {
 ySpeed += yGravity
 
 
-if place_meeting(x + xSpeed, y, objBlock) {
+// place_meeting(x + xSpeed, y, objBlock) {
+if scrMoveContactObjectWouldPress(xSpeed, 0, objBlock) {
     scrMoveContactObject(xSpeed, 0, objBlock)
+    
     xSpeed = 0
 }
 
-if place_meeting(x, y + ySpeed, objBlock) {
+//if place_meeting(x, y + ySpeed, objBlock) {
+if scrMoveContactObjectWouldPress(0, ySpeed, objBlock) {
     scrMoveContactObject(0, ySpeed, objBlock)
+    
     if (global.grav == 1 and ySpeed &gt; 0) or (global.grav == -1 and ySpeed &lt; 0) {
         djump = true
     }
+    
     ySpeed = 0
 }
 
-if place_meeting(x + xSpeed, y + ySpeed, objBlock) {
+//if place_meeting(x + xSpeed, y + ySpeed, objBlock) {
+if scrMoveContactObjectWouldPress(xSpeed, ySpeed, objBlock) {
     xSpeed = 0
 }
 

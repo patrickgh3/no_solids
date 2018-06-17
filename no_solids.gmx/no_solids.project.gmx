@@ -53,6 +53,7 @@
     <script>scripts\scrSetGrav.gml</script>
     <script>scripts\scrKillPlayer.gml</script>
     <script>scripts\scrMoveContactObject.gml</script>
+    <script>scripts\scrMoveContactObjectWouldPress.gml</script>
   </scripts>
   <objects name="objects">
     <object>objects\objPlayer</object>
