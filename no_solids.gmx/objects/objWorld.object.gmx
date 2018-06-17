@@ -290,10 +290,11 @@ scrUpdateResolution()
             <string>draw_set_color(c_black)
 
 draw_text(10, 10, fps)
+draw_text(10, 30, fps_real)
 
 if instance_exists(objPlayer) {
-    draw_text(10, 30, objPlayer.x)
-    draw_text(10, 50, objPlayer.y)
+    draw_text(10, 50, objPlayer.x)
+    draw_text(10, 70, objPlayer.y)
 }
 
 

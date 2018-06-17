@@ -29,19 +29,23 @@
 xSpeed = 0
 ySpeed = 0
 
+djump = true
+frozen = false
+
+xScale = 1
+
+carriedXThisStep = false
+
+
 jump = 8.5
 jump2 = 7
 jumpReleaseFactor = 0.45
+
 maxXSpeed = 3
 maxYSpeed = 9
 
 vineJumpXSpeed = 15
 vineJumpYSpeed = 9
-
-djump = true
-frozen = false
-
-xScale = 1
 </string>
           </argument>
         </arguments>
@@ -196,6 +200,9 @@ if ySpeed * global.grav &lt; 0 and jumpedThroughPlatform != noone {
     
     ySpeed = 0
 }
+
+
+carriedXThisStep = false
 </string>
           </argument>
         </arguments>

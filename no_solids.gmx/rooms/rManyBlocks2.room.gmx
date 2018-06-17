@@ -1937,6 +1937,7 @@
     <instance objName="objBlockTestMotion" x="832" y="544" name="inst_A6C93CD7" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objPlayer" x="320" y="288" name="inst_7582EBA3" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBlockTestMotion" x="352" y="288" name="inst_737C8A37" locked="0" code="behavior = 1&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objGravityArrowUp" x="352" y="320" name="inst_DC24579F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>

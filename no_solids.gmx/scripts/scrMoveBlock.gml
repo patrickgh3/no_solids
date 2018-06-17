@@ -68,9 +68,13 @@ if dX != 0 {
         }
     }
     else {
-        if playerRiding != noone {
+        // Only one block per step can carry the player horizontally, to avoid the player
+        // "sliding" if standing on the seam of two adjacent blocks moving down-right.
+        if playerRiding != noone and not playerRiding.carriedXThisStep {
             with playerRiding {
                 scrMoveContactBlocks(dX, 0)
+                
+                carriedXThisStep = true
             }
             
             image_blend = c_aqua
