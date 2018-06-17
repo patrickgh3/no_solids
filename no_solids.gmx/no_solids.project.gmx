@@ -82,8 +82,6 @@
   <rooms name="rooms">
     <room>rooms\rInit</room>
     <room>rooms\room3</room>
-    <room>rooms\room5</room>
-    <room>rooms\room4</room>
     <room>rooms\room6</room>
   </rooms>
   <help>

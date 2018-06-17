@@ -23,7 +23,10 @@ if dX == 0 and dY == 0 {
 }
 
 
-var playerRiding = instance_place(x, y - global.grav, objPlayer)
+//var playerRiding = instance_place(x, y - global.grav, objPlayer)
+// This scalar is a hack to fix "popping off" riding blocks that accelerate downwards
+var playerRiding = instance_place(x, y - global.grav * 1.5, objPlayer)
+
 if instance_place(x, y, playerRiding) {
     playerRiding = noone
 }
