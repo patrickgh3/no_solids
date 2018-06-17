@@ -52,10 +52,12 @@
     <script>scripts\scrInit.gml</script>
     <script>scripts\scrSetGrav.gml</script>
     <script>scripts\scrKillPlayer.gml</script>
-    <script>scripts\scrMoveContactBlocks.gml</script>
-    <script>scripts\scrMoveContactBlocksWouldPress.gml</script>
-    <script>scripts\scrMoveBlock.gml</script>
-    <script>scripts\scrWouldPressPlatform.gml</script>
+    <scripts name="Block and platform movement">
+      <script>scripts\scrMoveContactBlocks.gml</script>
+      <script>scripts\scrMoveContactBlocksWouldPress.gml</script>
+      <script>scripts\scrWouldPressPlatform.gml</script>
+      <script>scripts\scrMoveBlock.gml</script>
+    </scripts>
   </scripts>
   <objects name="objects">
     <object>objects\objPlayer</object>
@@ -82,8 +84,10 @@
   </objects>
   <rooms name="rooms">
     <room>rooms\rInit</room>
-    <room>rooms\room3</room>
-    <room>rooms\room6</room>
+    <room>rooms\rRandomBlocks</room>
+    <room>rooms\rVines</room>
+    <room>rooms\rManyBlocks</room>
+    <room>rooms\rManyBlocks2</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

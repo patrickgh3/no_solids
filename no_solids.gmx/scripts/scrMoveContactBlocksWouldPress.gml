@@ -1,5 +1,5 @@
 ///scrMoveContactBlocksWouldPress(dx, dy)
-// returns 0 if we wouldn't press against a block/platform, 1 if we would
+// returns 0 if we wouldn't press up against a block/platform, 1 if we would
 
 var dx = argument0
 var dy = argument1
