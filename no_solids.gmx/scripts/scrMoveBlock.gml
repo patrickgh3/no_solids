@@ -5,6 +5,11 @@ var dY = argument1
 var pushUpOnly = argument2
 
 
+if dX == 0 and dY == 0 {
+    return 0
+}
+
+
 var pushLeft = true
 var pushRight = true
 var pushUp = true
@@ -18,35 +23,25 @@ if pushUpOnly {
 }
 
 
-if dX == 0 and dY == 0 {
-    return 0
-}
-
-
-//var playerRiding = instance_place(x, y - global.grav, objPlayer)
-// This scalar is a hack to fix "popping off" riding blocks that accelerate downwards
+// Multiplying global.grav by this scalar is a hack to fix "popping off" riding blocks that accelerate downwards
 var playerRiding = instance_place(x, y - global.grav * 1.5, objPlayer)
 
-if instance_place(x, y, playerRiding) {
-    playerRiding = noone
+
+// Vine riding behind a moving block
+if vinesEnabled and playerRiding == noone {
+    // This number is kinda hacky, I'm not sure how big/small it needs to be, but this works...
+    var vineRideRange = 2
+    
+    playerRiding = instance_place(x - vineRideRange, y, objPlayer)
+    
+    if playerRiding == noone {
+        playerRiding = instance_place(x + vineRideRange, y, objPlayer)
+    }
 }
 
 
-// Vine riding behind
-var vineRideRange = 2
-if vinesEnabled and playerRiding == noone {
-    playerRiding = instance_place(x - vineRideRange, y, objPlayer)
-    if instance_place(x, y, playerRiding) {
-        playerRiding = noone
-    }
-    
-    // Now try the right...
-    if playerRiding == noone {
-        playerRiding = instance_place(x + vineRideRange, y, objPlayer)
-        if instance_place(x, y, playerRiding) {
-            playerRiding = noone
-        }
-    }
+if place_meeting(x, y, playerRiding) {
+    playerRiding = noone
 }
 
 
@@ -60,14 +55,14 @@ if dX != 0 {
         // Push right
         if dX > 0 and pushRight {
             collided.x += bbox_right + 1 - collided.bbox_left
-            collided.x = ceil(collided.x) // to prevent kinda-stuck at 0.5 speed
+            collided.x = ceil(collided.x) // hack to prevent weird stuck behavior on blocks moving at 0.5 speed
             
             image_blend = c_lime
         }
         // Push left
         else if dX < 0 and pushLeft {
             collided.x += bbox_left - (collided.bbox_right + 1)
-            collided.x = floor(collided.x) // to prevent kinda-stuck at 0.5 speed
+            collided.x = floor(collided.x) // hack to prevent weird stuck behavior on blocks moving at 0.5 speed
             
             image_blend = c_lime
         }
@@ -75,7 +70,7 @@ if dX != 0 {
     else {
         if playerRiding != noone {
             with playerRiding {
-                scrMoveContactObject(dX, 0, objBlock)
+                scrMoveContactBlocks(dX, 0)
             }
             
             image_blend = c_aqua
@@ -107,7 +102,7 @@ if dY != 0 {
     else {
         if playerRiding != noone {
             with playerRiding {
-                scrMoveContactObject(0, dY, objBlock)
+                scrMoveContactBlocks(0, dY)
             }
             
             image_blend = c_aqua

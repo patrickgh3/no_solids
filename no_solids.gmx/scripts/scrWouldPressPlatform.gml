@@ -1,4 +1,4 @@
-///scrWouldPressPlatform(dy)
+/// scrWouldPressPlatform(dy)
 
 var dy = argument0
 

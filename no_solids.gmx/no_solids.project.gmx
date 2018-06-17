@@ -52,8 +52,8 @@
     <script>scripts\scrInit.gml</script>
     <script>scripts\scrSetGrav.gml</script>
     <script>scripts\scrKillPlayer.gml</script>
-    <script>scripts\scrMoveContactObject.gml</script>
-    <script>scripts\scrMoveContactObjectWouldPress.gml</script>
+    <script>scripts\scrMoveContactBlocks.gml</script>
+    <script>scripts\scrMoveContactBlocksWouldPress.gml</script>
     <script>scripts\scrMoveBlock.gml</script>
     <script>scripts\scrWouldPressPlatform.gml</script>
   </scripts>
@@ -63,6 +63,7 @@
     <object>objects\objBlockTestMotion</object>
     <object>objects\objPlatform</object>
     <object>objects\objPlatformTestMotion</object>
+    <object>objects\objSwapBlocksForPlatforms</object>
     <object>objects\objWorld</object>
     <object>objects\objPauseMenu</object>
     <object>objects\objCamera</object>
@@ -71,7 +72,6 @@
     <object>objects\objGravityArrowUp</object>
     <object>objects\objGravityArrowDown</object>
     <object>objects\objTestSinBlock</object>
-    <object>objects\objSwapBlocksForPlatforms</object>
     <objects name="Obstacles">
       <object>objects\objPlayerKiller</object>
       <object>objects\objSpikeUp</object>
