@@ -8,6 +8,36 @@
   <parentName>objBlock</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
+    <event eventtype="0" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>// Set these variables in instance creation code
+
+behavior = 0
+
+xSpeed = 0
+ySpeed = 0
+xGravity = 0
+yGravity = 0
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
@@ -27,8 +57,15 @@
             <kind>1</kind>
             <string>event_inherited()
 
-
-scrMoveBlock((mouse_x - 16) - x, (mouse_y - 16) - y)
+if behavior == 0 {
+    xSpeed += xGravity
+    ySpeed += yGravity
+    
+    scrMoveBlock(xSpeed, ySpeed)
+}
+else if behavior == 1 {
+    scrMoveBlock((mouse_x - sprite_width / 2) - x, (mouse_y - sprite_height / 2) - y)
+}
 </string>
           </argument>
         </arguments>

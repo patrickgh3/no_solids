@@ -54,11 +54,12 @@
     <script>scripts\scrKillPlayer.gml</script>
     <script>scripts\scrMoveContactObject.gml</script>
     <script>scripts\scrMoveContactObjectWouldPress.gml</script>
+    <script>scripts\scrMoveBlock.gml</script>
   </scripts>
   <objects name="objects">
     <object>objects\objPlayer</object>
     <object>objects\objBlock</object>
-    <object>objects\objBlockFollowMouse</object>
+    <object>objects\objBlockTestMotion</object>
     <object>objects\objPlatform</object>
     <object>objects\objPlatformFollowMouse</object>
     <object>objects\objWorld</object>

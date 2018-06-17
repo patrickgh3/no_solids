@@ -26,6 +26,7 @@ if dx != 0 {
     
     pressed = true
 }
+
 if dy != 0 {
     var yy = 0
     while yy < abs(dy)

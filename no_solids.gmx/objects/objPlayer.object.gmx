@@ -264,14 +264,12 @@ if onVineL or onVineR {
 ySpeed += yGravity
 
 
-// place_meeting(x + xSpeed, y, objBlock) {
 if scrMoveContactObjectWouldPress(xSpeed, 0, objBlock) {
     scrMoveContactObject(xSpeed, 0, objBlock)
     
     xSpeed = 0
 }
 
-//if place_meeting(x, y + ySpeed, objBlock) {
 if scrMoveContactObjectWouldPress(0, ySpeed, objBlock) {
     scrMoveContactObject(0, ySpeed, objBlock)
     
@@ -282,7 +280,6 @@ if scrMoveContactObjectWouldPress(0, ySpeed, objBlock) {
     ySpeed = 0
 }
 
-//if place_meeting(x + xSpeed, y + ySpeed, objBlock) {
 if scrMoveContactObjectWouldPress(xSpeed, ySpeed, objBlock) {
     xSpeed = 0
 }
