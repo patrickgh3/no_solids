@@ -7,7 +7,7 @@ var obj = argument2
 
 
 if not place_meeting(x + dx, y + dy, obj)
-and not (sign(dy) == global.grav and scrWouldPressPlatform(dy)) {
+and not (sign(dy) == global.grav and scrWouldPressPlatform(dy) != noone) {
     x += dx
     y += dy
     
@@ -31,7 +31,7 @@ if dy != 0 {
     var yy = 0
     while yy < abs(dy)
         and not (place_meeting(x, y + sign(dy), obj)
-        or (sign(dy) == global.grav and scrWouldPressPlatform(sign(dy)))) {
+        or (sign(dy) == global.grav and scrWouldPressPlatform(sign(dy)) != noone)) {
         
         y += sign(dy)
         yy ++
