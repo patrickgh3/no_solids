@@ -164,15 +164,11 @@ ySpeed += yGravity
 
 
 // This section is adapted from the standard engine's objPlayer collision with objBlock event
-if scrMoveContactBlocksWouldPress(xSpeed, 0) {
-    scrMoveContactBlocks(xSpeed, 0)
-    
+if scrMoveContactBlocksUndoIfNoPress(xSpeed, 0) {
     xSpeed = 0
 }
 
-if scrMoveContactBlocksWouldPress(0, ySpeed) {
-    scrMoveContactBlocks(0, ySpeed)
-    
+if scrMoveContactBlocksUndoIfNoPress(0, ySpeed) {
     if (global.grav == 1 and ySpeed &gt; 0) or (global.grav == -1 and ySpeed &lt; 0) {
         djump = true
     }

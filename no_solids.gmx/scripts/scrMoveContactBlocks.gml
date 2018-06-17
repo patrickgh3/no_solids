@@ -5,6 +5,11 @@ var dx = argument0
 var dy = argument1
 
 
+if dx == 0 and dy == 0 {
+    return false
+}
+
+
 if not place_meeting(x + dx, y + dy, objBlock)
 and not (sign(dy) == global.grav and scrWouldPressPlatform(dy) != noone) {
     x += dx

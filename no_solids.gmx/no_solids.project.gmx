@@ -55,6 +55,7 @@
     <scripts name="Block and platform movement">
       <script>scripts\scrMoveContactBlocks.gml</script>
       <script>scripts\scrMoveContactBlocksWouldPress.gml</script>
+      <script>scripts\scrMoveContactBlocksUndoIfNoPress.gml</script>
       <script>scripts\scrWouldPressPlatform.gml</script>
       <script>scripts\scrMoveBlock.gml</script>
     </scripts>
@@ -88,6 +89,8 @@
     <room>rooms\rVines</room>
     <room>rooms\rManyBlocks</room>
     <room>rooms\rManyBlocks2</room>
+    <room>rooms\rManyPlatforms</room>
+    <room>rooms\rManyBoth</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>
