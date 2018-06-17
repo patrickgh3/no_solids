@@ -25,7 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// Set these variables in instance creation code
+            <string>event_inherited()
+
+// Set these variables in instance creation code
 
 behavior = 0
 
@@ -33,6 +35,8 @@ xSpeed = 0
 ySpeed = 0
 xGravity = 0
 yGravity = 0
+
+hasVineToggle = false
 </string>
           </argument>
         </arguments>
@@ -65,6 +69,30 @@ if behavior == 0 {
 }
 else if behavior == 1 {
     scrMoveBlock((mouse_x - sprite_width / 2) - x, (mouse_y - sprite_height / 2) - y, false)
+}
+
+
+if hasVineToggle and keyboard_check_pressed(ord('V')) {
+    if not vinesEnabled {
+        vinesEnabled = true
+        
+        vines[0] = instance_create(x, y, objVineR)
+        vines[1] = instance_create(x, y, objVineL)
+    }
+    else {
+        vinesEnabled = false
+        
+        for (var i = 0; i &lt; array_length_1d(vines); i++) {
+            with vines[i] instance_destroy()
+        }
+    }
+}
+
+if vinesEnabled {
+    for (var i = 0; i &lt; array_length_1d(vines); i++) {
+        vines[i].x = x
+        vines[i].y = y
+    }
 }
 </string>
           </argument>

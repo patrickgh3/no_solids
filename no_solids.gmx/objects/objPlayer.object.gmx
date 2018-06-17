@@ -194,8 +194,9 @@ if not frozen {
     else if leftDown h = -1
 }
 
-var onVineL = place_meeting(x - 1, y, objVineL) and blockOn == noone
-var onVineR = place_meeting(x + 1, y, objVineR) and blockOn == noone
+var vineDist = 1.5 // In standard physics this is 1
+var onVineL = place_meeting(x - vineDist, y, objVineL) and blockOn == noone
+var onVineR = place_meeting(x + vineDist, y, objVineR) and blockOn == noone
 
 if h != 0 {
     if not onVineR and not onVineL {
@@ -244,7 +245,8 @@ if onVineL or onVineR {
     if onVineR xScale = -1
     else xScale = 1
     
-    ySpeed = 2 * global.grav
+    //ySpeed = 2 * global.grav
+    ySpeed = -yGravity
     
     if (onVineL and rightPressed) or (onVineR and leftPressed) {
         if jumpDown {

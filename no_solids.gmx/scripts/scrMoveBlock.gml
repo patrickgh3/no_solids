@@ -32,6 +32,24 @@ if instance_place(x, y, playerRiding) {
 }
 
 
+// Vine riding behind
+var vineRideRange = 2
+if vinesEnabled and playerRiding == noone {
+    playerRiding = instance_place(x - vineRideRange, y, objPlayer)
+    if instance_place(x, y, playerRiding) {
+        playerRiding = noone
+    }
+    
+    // Now try the right...
+    if playerRiding == noone {
+        playerRiding = instance_place(x + vineRideRange, y, objPlayer)
+        if instance_place(x, y, playerRiding) {
+            playerRiding = noone
+        }
+    }
+}
+
+
 if dX != 0 {
     x += dX
     
