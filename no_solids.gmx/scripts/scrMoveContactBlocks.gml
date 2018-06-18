@@ -18,10 +18,16 @@ and not (sign(dY) == global.grav and scrWouldPressPlatform(dY) != noone) {
 }
 
 
+var playerPushBlockPixels = 2
+
 for (var i = 0; i < abs(dX); i++) {
-    with instance_place(x + sign(dX), y, objPushableBlock) {
-        if place_meeting(x, y + sign(yGravity), objBlock) {
-            scrMoveContactBlocks(sign(dX), 0, false)
+    if object_index == objPlayer and playerPushBlockPixels > 0 {
+        with instance_place(x + sign(dX), y, objPushableBlock) {
+            if place_meeting(x, y + sign(yGravity), objBlock) {
+                scrMoveContactBlocks(sign(dX), 0, false)
+                
+                playerPushBlockPixels--
+            }
         }
     }
 

@@ -37,6 +37,8 @@ xGravity = 0
 yGravity = 0
 
 hasVineToggle = false
+
+t = 0
 </string>
           </argument>
         </arguments>
@@ -71,6 +73,17 @@ if behavior == 0 {
 }
 else if behavior == 1 {
     scrMoveBlock((mouse_x - sprite_width / 2) - x, (mouse_y - sprite_height / 2) - y, false)
+}
+else if behavior == 2 {
+    t++
+    
+    var radius = 50
+    var angle = t / 300 * 360
+    
+    var xNext = xstart + lengthdir_x(radius, angle)
+    var yNext = ystart + lengthdir_y(radius, angle)
+    
+    scrMoveBlock(xNext - x, yNext - y, false)
 }
 
 

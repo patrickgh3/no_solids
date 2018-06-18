@@ -76,7 +76,6 @@
     <object>objects\objVineL</object>
     <object>objects\objGravityArrowUp</object>
     <object>objects\objGravityArrowDown</object>
-    <object>objects\objTestSinBlock</object>
     <objects name="Obstacles">
       <object>objects\objPlayerKiller</object>
       <object>objects\objSpikeUp</object>
@@ -93,7 +92,7 @@
     <room>rooms\rManyBlocks2</room>
     <room>rooms\rManyPlatforms</room>
     <room>rooms\rManyBoth</room>
-    <room>rooms\room7</room>
+    <room>rooms\rAllTest</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>
