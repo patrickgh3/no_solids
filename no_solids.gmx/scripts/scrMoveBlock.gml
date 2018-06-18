@@ -1,5 +1,7 @@
 /// scrMoveBlock(dX, dY, pushUpOnly)
 
+show_debug_message('scrMoveBlock')
+
 var dX = argument0
 var dY = argument1
 var pushUpOnly = argument2

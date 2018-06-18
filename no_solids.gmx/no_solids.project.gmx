@@ -20,6 +20,7 @@
     </sprites>
     <sprite>sprites\sprPlayerMask</sprite>
     <sprite>sprites\sprBlockMask</sprite>
+    <sprite>sprites\sprPushableBlock</sprite>
     <sprite>sprites\sprPlatformUp</sprite>
     <sprite>sprites\sprVineR</sprite>
     <sprite>sprites\sprVineL</sprite>
@@ -53,17 +54,19 @@
     <script>scripts\scrSetGrav.gml</script>
     <script>scripts\scrKillPlayer.gml</script>
     <scripts name="Block and platform movement">
+      <script>scripts\scrMoveBlock.gml</script>
       <script>scripts\scrMoveContactBlocks.gml</script>
+      <script>scripts\scrMoveNew.gml</script>
       <script>scripts\scrMoveContactBlocksWouldPress.gml</script>
       <script>scripts\scrMoveContactBlocksUndoIfNoPress.gml</script>
       <script>scripts\scrWouldPressPlatform.gml</script>
-      <script>scripts\scrMoveBlock.gml</script>
     </scripts>
   </scripts>
   <objects name="objects">
     <object>objects\objPlayer</object>
     <object>objects\objBlock</object>
     <object>objects\objBlockTestMotion</object>
+    <object>objects\objPushableBlock</object>
     <object>objects\objPlatform</object>
     <object>objects\objPlatformTestMotion</object>
     <object>objects\objSwapBlocksForPlatforms</object>

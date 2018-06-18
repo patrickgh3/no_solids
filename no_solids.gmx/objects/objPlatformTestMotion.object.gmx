@@ -57,9 +57,7 @@ yGravity = 0
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//event_inherited()
-
-if behavior == 0 and xSpeed == 0 and ySpeed == 0 and xGravity == 0 and yGravity == 0 {
+            <string>if behavior == 0 and xSpeed == 0 and ySpeed == 0 and xGravity == 0 and yGravity == 0 {
     exit
 }
 
@@ -68,10 +66,15 @@ if behavior == 0 {
     xSpeed += xGravity
     ySpeed += yGravity
     
-    scrMoveBlock(xSpeed, ySpeed, true)
+    //scrMoveBlock(xSpeed, ySpeed, true)
+    scrMoveNew(xSpeed, ySpeed, true, false, true)
 }
 else if behavior == 1 {
-    scrMoveBlock((mouse_x - sprite_width / 2) - x, (mouse_y - sprite_height / 2) - y, true)
+    //scrMoveBlock((mouse_x - sprite_width / 2) - x, (mouse_y - sprite_height / 2) - y, true)
+    scrMoveNew(
+        (mouse_x - sprite_width / 2) - x,
+        (mouse_y - sprite_height / 2) - y,
+        true, false, true)
 }
 </string>
           </argument>
