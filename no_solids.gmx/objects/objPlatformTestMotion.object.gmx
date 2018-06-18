@@ -25,9 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited()
-
-// Set these variables in instance creation code
+            <string>// Set these variables in instance creation code
 
 behavior = 0
 

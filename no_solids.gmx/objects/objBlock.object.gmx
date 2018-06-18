@@ -25,7 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>vinesEnabled = false
+            <string>vineLeft = noone
+vineRight = noone
 </string>
           </argument>
         </arguments>

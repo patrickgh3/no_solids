@@ -5,11 +5,9 @@ var dX = argument0
 var dY = argument1
 var stopOnPlatforms = argument2
 
-
 if dX == 0 and dY == 0 {
     return false
 }
-
 
 if not place_meeting(x + dX, y + dY, objBlock)
 and not (sign(dY) == global.grav and scrWouldPressPlatform(dY) != noone) {

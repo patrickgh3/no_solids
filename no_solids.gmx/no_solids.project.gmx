@@ -54,11 +54,11 @@
     <script>scripts\scrSetGrav.gml</script>
     <script>scripts\scrKillPlayer.gml</script>
     <scripts name="Block and platform movement">
+      <script>scripts\scrMoveBlock.gml</script>
       <script>scripts\scrMoveContactBlocks.gml</script>
       <script>scripts\scrMoveContactBlocksWouldPress.gml</script>
       <script>scripts\scrMoveContactBlocksUndoIfNoPress.gml</script>
       <script>scripts\scrWouldPressPlatform.gml</script>
-      <script>scripts\scrMoveBlock.gml</script>
     </scripts>
   </scripts>
   <objects name="objects">
@@ -93,6 +93,7 @@
     <room>rooms\rManyBlocks2</room>
     <room>rooms\rManyPlatforms</room>
     <room>rooms\rManyBoth</room>
+    <room>rooms\room7</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

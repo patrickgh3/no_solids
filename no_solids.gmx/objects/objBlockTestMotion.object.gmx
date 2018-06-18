@@ -74,27 +74,32 @@ else if behavior == 1 {
 }
 
 
-if hasVineToggle and keyboard_check_pressed(ord('V')) {
-    if not vinesEnabled {
-        vinesEnabled = true
-        
-        vines[0] = instance_create(x, y, objVineR)
-        vines[1] = instance_create(x, y, objVineL)
+if hasVineToggle {
+    if keyboard_check_pressed(ord('1')) {
+        if vineLeft == noone {
+            vineLeft = instance_create(x, y, objVineR)
+        } else {
+            with vineLeft instance_destroy()
+            vineLeft = noone
+        }
     }
-    else {
-        vinesEnabled = false
-        
-        for (var i = 0; i &lt; array_length_1d(vines); i++) {
-            with vines[i] instance_destroy()
+    else if keyboard_check_pressed(ord('2')) {
+        if vineRight == noone {
+            vineRight = instance_create(x, y, objVineL)
+        } else {
+            with vineRight instance_destroy()
+            vineRight = noone
         }
     }
 }
 
-if vinesEnabled {
-    for (var i = 0; i &lt; array_length_1d(vines); i++) {
-        vines[i].x = x
-        vines[i].y = y
-    }
+if instance_exists(vineLeft) {
+    vineLeft.x = x
+    vineLeft.y = y
+}
+if instance_exists(vineRight) {
+    vineRight.x = x
+    vineRight.y = y
 }
 </string>
           </argument>
