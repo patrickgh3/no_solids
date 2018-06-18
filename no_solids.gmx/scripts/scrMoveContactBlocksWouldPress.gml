@@ -8,7 +8,7 @@ var dy = argument1
 var xPrev = x
 var yPrev = y
 
-var pressed = scrMoveContactBlocks(dx, dy)
+var pressed = scrMoveContactBlocks(dx, dy, true)
 
 x = xPrev
 y = yPrev

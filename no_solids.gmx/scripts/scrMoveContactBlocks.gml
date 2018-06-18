@@ -1,47 +1,46 @@
-///scrMoveContactBlocks(dx, dy)
+///scrMoveContactBlocks(dX, dY, stopOnPlatforms)
 // returns 0 if we didn't press up against a block/platform, 1 if we did
 
-var dx = argument0
-var dy = argument1
+var dX = argument0
+var dY = argument1
+var stopOnPlatforms = argument2
 
 
-if dx == 0 and dy == 0 {
+if dX == 0 and dY == 0 {
     return false
 }
 
 
-if not place_meeting(x + dx, y + dy, objBlock)
-and not (sign(dy) == global.grav and scrWouldPressPlatform(dy) != noone) {
-    x += dx
-    y += dy
+if not place_meeting(x + dX, y + dY, objBlock)
+and not (sign(dY) == global.grav and scrWouldPressPlatform(dY) != noone) {
+    x += dX
+    y += dY
     
     return false
 }
 
 
-var pressed = false
+for (var i = 0; i < abs(dX); i++) {
+    with instance_place(x + sign(dX), y, objPushableBlock) {
+        if place_meeting(x, y + sign(yGravity), objBlock) {
+            scrMoveContactBlocks(sign(dX), 0, false)
+        }
+    }
 
-if dx != 0 {
-    var xx = 0
-    while xx < abs(dx) and not place_meeting(x + sign(dx), y, objBlock) {
-        x += sign(dx)
-        xx ++
+    if place_meeting(x + sign(dX), y, objBlock) {
+        break
     }
     
-    pressed = true
+    x += sign(dX)
 }
 
-if dy != 0 {
-    var yy = 0
-    while yy < abs(dy)
-        and not (place_meeting(x, y + sign(dy), objBlock)
-        or (sign(dy) == global.grav and scrWouldPressPlatform(sign(dy)) != noone)) {
-        
-        y += sign(dy)
-        yy ++
+for (var i = 0; i < abs(dY); i++) {
+    if (place_meeting(x, y + sign(dY), objBlock)
+        or (stopOnPlatforms and sign(dY) == global.grav and scrWouldPressPlatform(sign(dY)) != noone)) {
+        break
     }
     
-    pressed = true
+    y += sign(dY)
 }
 
-return pressed
+return true

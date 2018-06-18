@@ -31,8 +31,8 @@
 
 behavior = 0
 
-xSpeed = 1.3
-ySpeed = 1.3
+xSpeed = 0
+ySpeed = 0
 xGravity = 0
 yGravity = 0
 
@@ -59,9 +59,7 @@ hasVineToggle = false
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//event_inherited()
-
-if behavior == 0 and xSpeed == 0 and ySpeed == 0 and xGravity == 0 and yGravity == 0 {
+            <string>if behavior == 0 and xSpeed == 0 and ySpeed == 0 and xGravity == 0 and yGravity == 0 {
     exit
 }
 

@@ -20,6 +20,7 @@
     </sprites>
     <sprite>sprites\sprPlayerMask</sprite>
     <sprite>sprites\sprBlockMask</sprite>
+    <sprite>sprites\sprPushableBlock</sprite>
     <sprite>sprites\sprPlatformUp</sprite>
     <sprite>sprites\sprVineR</sprite>
     <sprite>sprites\sprVineL</sprite>
@@ -64,6 +65,7 @@
     <object>objects\objPlayer</object>
     <object>objects\objBlock</object>
     <object>objects\objBlockTestMotion</object>
+    <object>objects\objPushableBlock</object>
     <object>objects\objPlatform</object>
     <object>objects\objPlatformTestMotion</object>
     <object>objects\objSwapBlocksForPlatforms</object>

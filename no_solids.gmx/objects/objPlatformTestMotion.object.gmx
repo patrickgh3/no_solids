@@ -57,9 +57,7 @@ yGravity = 0
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//event_inherited()
-
-if behavior == 0 and xSpeed == 0 and ySpeed == 0 and xGravity == 0 and yGravity == 0 {
+            <string>if behavior == 0 and xSpeed == 0 and ySpeed == 0 and xGravity == 0 and yGravity == 0 {
     exit
 }
 

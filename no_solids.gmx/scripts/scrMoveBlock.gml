@@ -45,6 +45,20 @@ if place_meeting(x, y, playerRiding) {
 }
 
 
+if object_index == objPushableBlock {
+    var xPrev = x
+    var yPrev = y
+    
+    scrMoveContactBlocks(dX, dY, false)
+    
+    dX = x - xPrev
+    dY = y - yPrev
+    
+    x = xPrev
+    y = yPrev
+}
+
+
 if dX != 0 {
     x += dX
     
@@ -72,7 +86,7 @@ if dX != 0 {
         // "sliding" if standing on the seam of two adjacent blocks moving down-right.
         if playerRiding != noone and not playerRiding.carriedXThisStep {
             with playerRiding {
-                scrMoveContactBlocks(dX, 0)
+                scrMoveContactBlocks(dX, 0, true)
                 
                 carriedXThisStep = true
             }
@@ -106,7 +120,7 @@ if dY != 0 {
     else {
         if playerRiding != noone {
             with playerRiding {
-                scrMoveContactBlocks(0, dY)
+                scrMoveContactBlocks(0, dY, true)
             }
             
             image_blend = c_aqua
