@@ -51,7 +51,6 @@
       <script>scripts\scrQuadInterp.gml</script>
     </scripts>
     <script>scripts\scrInit.gml</script>
-    <script>scripts\scrSetGrav.gml</script>
     <script>scripts\scrKillPlayer.gml</script>
     <scripts name="Block and platform movement">
       <script>scripts\scrMoveBlock.gml</script>

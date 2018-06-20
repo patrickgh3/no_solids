@@ -26,7 +26,8 @@
           <argument>
             <kind>1</kind>
             <string>if global.grav == -1 {
-    scrSetGrav(1)
+    global.grav = 1
+    
     other.djump = true
     other.ySpeed = 0
 }
