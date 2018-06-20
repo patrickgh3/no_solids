@@ -85,6 +85,7 @@
   </objects>
   <rooms name="rooms">
     <room>rooms\rInit</room>
+    <room>rooms\room9</room>
     <room>rooms\rRandomBlocks</room>
     <room>rooms\rVines</room>
     <room>rooms\rManyBlocks</room>

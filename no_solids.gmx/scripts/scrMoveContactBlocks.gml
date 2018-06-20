@@ -18,9 +18,10 @@ and not (sign(dY) == global.grav and scrWouldPressPlatform(dY) != noone) {
 }
 
 
-var playerPushBlockPixels = 2
+//var playerPushBlockPixels = 2
 
 for (var i = 0; i < abs(dX); i++) {
+    /*
     if object_index == objPlayer and playerPushBlockPixels > 0 {
         with instance_place(x + sign(dX), y, objPushableBlock) {
             if place_meeting(x, y + sign(yGravity), objBlock) {
@@ -30,21 +31,24 @@ for (var i = 0; i < abs(dX); i++) {
             }
         }
     }
-
-    if place_meeting(x + sign(dX), y, objBlock) {
-        break
-    }
+    */
     
-    x += sign(dX)
+    var stepX = min(1, abs(dX) - i) * sign(dX)
+
+    if place_meeting(x + stepX, y, objBlock) break
+    
+    x += stepX
 }
 
 for (var i = 0; i < abs(dY); i++) {
-    if (place_meeting(x, y + sign(dY), objBlock)
-        or (stopOnPlatforms and sign(dY) == global.grav and scrWouldPressPlatform(sign(dY)) != noone)) {
+    var stepY = min(1, abs(dY) - i) * sign(dY)
+    
+    if (place_meeting(x, y + stepY, objBlock)
+        or (stopOnPlatforms and sign(dY) == global.grav and scrWouldPressPlatform(stepY) != noone)) {
         break
     }
     
-    y += sign(dY)
+    y += stepY
 }
 
 return true

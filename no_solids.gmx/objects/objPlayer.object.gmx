@@ -32,6 +32,8 @@ ySpeed = 0
 djump = true
 frozen = false
 
+// Only one block per step can carry the player horizontally, to avoid the player
+// "sliding" if standing on the seam of two adjacent blocks moving down-right.
 carriedXThisStep = false
 
 
@@ -75,7 +77,7 @@ vineJumpYSpeed = 9
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if place_meeting(x, y, objBlock) {
+            <string>if place_meeting(x, y, objPlayerKiller) or place_meeting(x, y, objBlock) {
     scrKillPlayer()
 }
 </string>
@@ -159,9 +161,14 @@ var blockOn = instance_place(x, y + global.grav, objBlock)
 
 // NOTE: In standard physics this is 1. It's increased as a hack to prevent gradual "slipping" when riding a moving block vine from behind.
 // I'm not sure how big/small this number needs to be, but this works...
-var vineDist = 1.5
-var onVineL = place_meeting(x - vineDist, y, objVineL) and blockOn == noone
-var onVineR = place_meeting(x + vineDist, y, objVineR) and blockOn == noone
+//var vineDist = 1
+//var onVineL = place_meeting(x - vineDist, y, objVineL) and blockOn == noone
+//var onVineR = place_meeting(x + vineDist, y, objVineR) and blockOn == noone
+
+
+var vineDist = 1
+var onVineL = place_meeting(x - vineDist, y, objBlock)
+var onVineR = place_meeting(x + vineDist, y, objBlock)
 
 animOnVine = false
 
@@ -172,8 +179,8 @@ if onVineL or onVineR {
     else xScale = 1
     
     xSpeed = 0
-    ySpeed = 2 * global.grav
-    //ySpeed = -yGravity * global.grav
+    //ySpeed = 2 * global.grav
+    ySpeed = -yGravity * global.grav
     
     if not frozen and ((onVineL and rightPressed) or (onVineR and leftPressed)) {
         // Vine jump

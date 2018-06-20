@@ -20,11 +20,21 @@ if pushUpOnly {
     else pushUp = false
 }
 
+var collisionPlayerBefore = place_meeting(x, y, objPlayer)
 
-// Multiplying global.grav by this scalar is a hack to fix "popping off" riding blocks that accelerate downwards
-var playerRiding = instance_place(x, y - global.grav * 1.5, objPlayer)
+var carryPlayer = place_meeting(x, y - global.grav * 1.01, objPlayer) and not collisionPlayerBefore
 
+var vineDist = 1
 
+if not carryPlayer and dX >= 0 {
+    carryPlayer = place_meeting(x - vineDist, y, objPlayer) and not collisionPlayerBefore
+}
+    
+if not carryPlayer and dX <= 0 {
+    carryPlayer = place_meeting(x + vineDist, y, objPlayer) and not collisionPlayerBefore
+}
+
+/*
 // Vine riding behind a moving block
 if object_is_ancestor(object_index, objBlock) {
     // This number is kinda hacky, I'm not sure how big/small it needs to be, but this works...
@@ -45,7 +55,9 @@ if place_meeting(x, y, playerRiding) {
     playerRiding = noone
 }
 
+*/
 
+/*
 if object_index == objPushableBlock {
     var xPrev = x
     var yPrev = y
@@ -58,39 +70,36 @@ if object_index == objPushableBlock {
     x = xPrev
     y = yPrev
 }
+*/
 
 
 if dX != 0 {
     x += dX
     
-    var collided = instance_place(x, y, objPlayer)
+    var collided = place_meeting(x, y, objPlayer) and not place_meeting(x - dX, y, objPlayer)
     
-    if collided != noone and not place_meeting(x - dX, y, collided) {
-        if pushRight and dX > 0 {
-            collided.x += bbox_right + 1 - collided.bbox_left
-            collided.x = ceil(collided.x) // hack to prevent weird stuck behavior on blocks moving at 0.5 speed
+    if collided {
+        if dX > 0 and pushRight {
+            var pushDX = x + sprite_width / 2 - (objPlayer.x - sprite_get_width(sprPlayerMask) / 2) + 1
+            
+            with objPlayer scrMoveContactBlocks(pushDX, 0, true)
             
             image_blend = c_lime
         }
-        else if pushLeft and dX < 0 {
-            collided.x += bbox_left - (collided.bbox_right + 1)
-            collided.x = floor(collided.x) // hack to prevent weird stuck behavior on blocks moving at 0.5 speed
+        else if dX < 0 and pushLeft {
+            var pushDX = x - sprite_width / 2 - (objPlayer.x + sprite_get_width(sprPlayerMask) / 2) - 1
+            
+            with objPlayer scrMoveContactBlocks(pushDX, 0, true)
             
             image_blend = c_lime
         }
     }
-    else {
-        // Only one block per step can carry the player horizontally, to avoid the player
-        // "sliding" if standing on the seam of two adjacent blocks moving down-right.
-        with playerRiding {
-            if not carriedXThisStep {
-                scrMoveContactBlocks(dX, 0, true)
-                
-                carriedXThisStep = true
-                
-                other.image_blend = c_aqua
-            }
-        }
+    else if carryPlayer and not objPlayer.carriedXThisStep {
+        objPlayer.carriedXThisStep = true
+        
+        with objPlayer scrMoveContactBlocks(dX, 0, true)
+        
+        image_blend = c_aqua
     }
 }
 
@@ -98,25 +107,31 @@ if dX != 0 {
 if dY != 0 {
     y += dY
     
-    var collided = instance_place(x, y, objPlayer)
+    var collided = place_meeting(x, y, objPlayer) and not place_meeting(x, y - dY, objPlayer)
     
-    if collided != noone and not place_meeting(x, y - dY, collided) {
-        if pushDown and dY > 0 {
-            collided.y += bbox_bottom + 1 - collided.bbox_top
+    if collided {
+        if dY > 0 and pushDown {
+            //var pushDY = bbox_bottom - objPlayer.bbox_top + 1
+            var pushDY = y + sprite_height / 2 - (objPlayer.y - sprite_get_height(sprPlayerMask) / 2) + 1
+            
+            with objPlayer scrMoveContactBlocks(0, pushDY, true)
             
             image_blend = c_lime
         }
-        else if pushUp and dY < 0 {
-            collided.y += bbox_top - (collided.bbox_bottom + 1)
+        else if dY < 0 and pushUp {
+            //var pushDY = bbox_top - objPlayer.bbox_bottom - 1
+            var pushDY = y - sprite_height / 2 - (objPlayer.y + sprite_get_height(sprPlayerMask) / 2) - 1
+            
+            with objPlayer scrMoveContactBlocks(0, pushDY, true)
             
             image_blend = c_lime
         }
     }
-    else {
-        with playerRiding {
-            scrMoveContactBlocks(0, dY, true)
+    else if carryPlayer {
+        show_debug_message(dY)
+        
+        with objPlayer scrMoveContactBlocks(0, dY, true)
             
-            other.image_blend = c_aqua
-        }
+        image_blend = c_aqua
     }
 }

@@ -293,9 +293,19 @@ draw_text(10, 10, fps)
 draw_text(10, 30, fps_real)
 
 if instance_exists(objPlayer) {
-    draw_text(10, 50, objPlayer.x)
-    draw_text(10, 70, objPlayer.y)
-    draw_text(10, 90, objPlayer.animOnVine)
+    draw_text(10, 70, objPlayer.x)
+    draw_text(10, 90, objPlayer.y)
+}
+
+
+if instance_exists(objBlock) {
+    draw_text(10, 130, objBlock.x)
+    draw_text(10, 150, objBlock.y)
+    
+    draw_text(10, 190, objBlock.bbox_left)
+    draw_text(10, 210, objBlock.bbox_right)
+    draw_text(10, 230, objBlock.bbox_top)
+    draw_text(10, 250, objBlock.bbox_bottom)
 }
 
 
