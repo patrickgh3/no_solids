@@ -93,6 +93,7 @@
     <room>rooms\rManyPlatforms</room>
     <room>rooms\rManyBoth</room>
     <room>rooms\rAllTest</room>
+    <room>rooms\room8</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

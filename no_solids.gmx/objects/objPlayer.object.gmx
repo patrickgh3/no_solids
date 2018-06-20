@@ -36,6 +36,8 @@ xScale = 1
 
 carriedXThisStep = false
 
+animOnVine = false
+
 
 jump = 8.5
 jump2 = 7
@@ -157,14 +159,17 @@ var vineDist = 1.5
 var onVineL = place_meeting(x - vineDist, y, objVineL) and blockOn == noone
 var onVineR = place_meeting(x + vineDist, y, objVineR) and blockOn == noone
 
+animOnVine = false
+
 
 if onVineL or onVineR {
+    animOnVine = true
     if onVineR xScale = -1
     else xScale = 1
     
     xSpeed = 0
-    //ySpeed = 2 * global.grav
-    ySpeed = -yGravity
+    ySpeed = 2 * global.grav
+    //ySpeed = -yGravity
     
     if not frozen and ((onVineL and rightPressed) or (onVineR and leftPressed)) {
         // Vine jump
@@ -173,11 +178,15 @@ if onVineL or onVineR {
             else xSpeed = vineJumpXSpeed
             
             ySpeed = -vineJumpYSpeed * global.grav
+            
+            animOnVine = false
         }
         // Fall off the vine
         else {
             if onVineR xSpeed = -maxXSpeed
             else xSpeed = maxXSpeed
+            
+            animOnVine = false
         }
     }
 }
