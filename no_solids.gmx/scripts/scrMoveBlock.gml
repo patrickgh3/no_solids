@@ -37,6 +37,8 @@ var overlapPlayer = place_meeting(x, y, objPlayer)
 
 var carryPlayer = place_meeting(x, y - global.grav, objPlayer) and not overlapPlayer
 
+var carryPlayerOnTop = carryPlayer
+
 if not carryPlayer and hasVineLeft {
     carryPlayer = place_meeting(x - 1, y, objPlayer) and not overlapPlayer
 }
@@ -86,8 +88,8 @@ if dX != 0 {
             image_blend = c_lime
         }
     }
-    else if carryPlayer and not objPlayer.carriedXThisStep {
-        objPlayer.carriedXThisStep = true
+    else if carryPlayer and not (carryPlayerOnTop and objPlayer.carriedXOnTop) {
+        if carryPlayerOnTop objPlayer.carriedXOnTop = true
         
         with objPlayer scrMoveContactBlocks(dX, 0, true)
         

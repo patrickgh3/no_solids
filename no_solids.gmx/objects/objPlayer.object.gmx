@@ -32,9 +32,9 @@ ySpeed = 0
 djump = true
 frozen = false
 
-// Only one block per step can carry the player horizontally, to avoid the player
-// "sliding" if standing on the seam of two adjacent blocks moving down-right.
-carriedXThisStep = false
+// Only one block per step is allowed to carry the player horizontally on top of a block.
+// (e.g. there's a block moving at speed 3 and another one at speed 6 - the player should never move at speed 9)
+carriedXOnTop = false
 
 
 // Animation
@@ -240,7 +240,7 @@ if ySpeed * global.grav &lt; 0 and jumpedThroughPlatform != noone {
 }
 
 
-carriedXThisStep = false
+carriedXOnTop = false
 </string>
           </argument>
         </arguments>

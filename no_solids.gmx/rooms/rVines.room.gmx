@@ -111,6 +111,8 @@
     <instance objName="objBlock" x="480" y="640" name="inst_107FD1A2" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBlock" x="448" y="640" name="inst_0B8E6509" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBlock" x="512" y="640" name="inst_90C7BCA8" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objBlockTestMotion" x="704" y="480" name="inst_80196230" locked="0" code="xSpeed = -1&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objBlockTestMotion" x="768" y="480" name="inst_7BACD08F" locked="0" code="xSpeed = -1.2&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>
