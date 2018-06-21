@@ -113,23 +113,28 @@ var jumpPressed = scrButtonCheckPressed(global.jumpButton)
 var jumpReleased = scrButtonCheckReleased(global.jumpButton)
 
 
+var onVineL = place_meeting(x - 1, y, objVineL)
+var onVineR = place_meeting(x + 1, y, objVineR)
+
+
 xSpeed = 0
 
 if not frozen {
-    var h = 0
-    
-    if rightDown h = 1
-    else if leftDown h = -1
-    
-    if h != 0 {
-        xSpeed = maxXSpeed * h
-        xScale = h
+    if rightDown {
+        xSpeed = maxXSpeed
+        xScale = 1
+    }
+    else if leftDown {
+        xSpeed = -maxXSpeed
+        xScale = -1
     }
     
     
     if jumpPressed {
         // Single jump
-        if place_meeting(x, y + global.grav, objBlock) or place_meeting(x, y + global.grav, objPlatform) {
+        if place_meeting(x, y + global.grav, objBlock)
+                or place_meeting(x, y, objPlatform) // Allow "platform jumping"
+                or scrWouldPressOneWayWall(0, global.grav) != noone {
             ySpeed = -jump * global.grav
             djump = true
         }
@@ -156,11 +161,6 @@ else if global.grav == -1 and ySpeed &lt; -maxYSpeed {
     ySpeed = -maxYSpeed
 }
 
-
-//var blockOn = instance_place(x, y + global.grav, objBlock)
-
-var onVineL = place_meeting(x - 1, y, objVineL)// and blockOn == noone
-var onVineR = place_meeting(x + 1, y, objVineR)// and blockOn == noone
 
 animOnVine = false
 
@@ -221,17 +221,19 @@ x += xSpeed
 y += ySpeed
 
 
-// Snap to platforms when jumping up through them
-var jumpedThroughPlatform = scrWouldPressPlatform(-ySpeed)
-
-if ySpeed * global.grav &lt; 0 and jumpedThroughPlatform != noone {
-    if global.grav == 1 {
-        y = jumpedThroughPlatform.bbox_top - ceil(sprite_height / 2)
-    } else {
-        y = jumpedThroughPlatform.bbox_bottom + ceil(sprite_height / 2)
-    }
+// If we just jumped up through a one-way wall, snap to standing on top of it
+if ySpeed * global.grav &lt; 0 {
+    var jumpedThrough = scrWouldPressOneWayWall(0, -ySpeed)
     
-    ySpeed = 0
+    if jumpedThrough != noone {
+        if global.grav == 1 {
+            y = jumpedThrough.bbox_top - ceil(sprite_height / 2)
+        } else {
+            y = jumpedThrough.bbox_bottom + ceil(sprite_height / 2)
+        }
+        
+        ySpeed = 0
+    }
 }
 
 

@@ -21,18 +21,18 @@
     <sprite>sprites\sprPlayerMask</sprite>
     <sprite>sprites\sprBlockMask</sprite>
     <sprite>sprites\sprPushableBlock</sprite>
-    <sprite>sprites\sprPlatformUp</sprite>
-    <sprite>sprites\sprOneWayRight</sprite>
+    <sprite>sprites\sprOneWayUp</sprite>
+    <sprite>sprites\sprOneWayDown</sprite>
     <sprite>sprites\sprOneWayLeft</sprite>
+    <sprite>sprites\sprOneWayRight</sprite>
+    <sprite>sprites\sprPlatform</sprite>
     <sprite>sprites\sprVineR</sprite>
     <sprite>sprites\sprVineL</sprite>
     <sprite>sprites\sprGravityArrowUp</sprite>
     <sprite>sprites\sprGravityArrowDown</sprite>
   </sprites>
   <backgrounds name="background"/>
-  <paths name="paths">
-    <path>paths\path0</path>
-  </paths>
+  <paths name="paths"/>
   <scripts name="scripts">
     <scripts name="Options and controls">
       <script>scripts\scrButtonCheck.gml</script>
@@ -65,22 +65,28 @@
   </scripts>
   <objects name="objects">
     <object>objects\objPlayer</object>
-    <object>objects\objBlock</object>
-    <object>objects\objBlockTestMotion</object>
-    <object>objects\objPushableBlock</object>
-    <object>objects\objPlatform</object>
-    <object>objects\objPlatformTestMotion</object>
-    <object>objects\objOneWayWall</object>
-    <object>objects\objOneWayWallLeft</object>
-    <object>objects\objOneWayWallRight</object>
-    <object>objects\objSwapBlocksForPlatforms</object>
-    <object>objects\objWorld</object>
-    <object>objects\objPauseMenu</object>
-    <object>objects\objCamera</object>
+    <objects name="Block">
+      <object>objects\objBlock</object>
+      <object>objects\objBlockTestMotion</object>
+      <object>objects\objPushableBlock</object>
+    </objects>
+    <objects name="One Way Wall">
+      <object>objects\objOneWayWall</object>
+      <object>objects\objOneWayWallUp</object>
+      <object>objects\objOneWayWallDown</object>
+      <object>objects\objOneWayWallLeft</object>
+      <object>objects\objOneWayWallRight</object>
+      <object>objects\objPlatform</object>
+      <object>objects\objPlatformTestMotion</object>
+    </objects>
     <object>objects\objVineR</object>
     <object>objects\objVineL</object>
     <object>objects\objGravityArrowUp</object>
     <object>objects\objGravityArrowDown</object>
+    <object>objects\objWorld</object>
+    <object>objects\objPauseMenu</object>
+    <object>objects\objCamera</object>
+    <object>objects\objSwapBlocksForPlatforms</object>
     <objects name="Obstacles">
       <object>objects\objPlayerKiller</object>
       <object>objects\objSpikeUp</object>

@@ -1,5 +1,5 @@
 /// scrSolidMove(dX, dY, parentObj)
-// parentObj should be objBlock, objPlatform, or objOneWayWall
+// parentObj should be objBlock or objOneWayWall
 
 var dX = argument0
 var dY = argument1
@@ -29,19 +29,16 @@ if parentObj == objBlock {
     pushUp = true
     pushDown = true
 }
-else if parentObj == objPlatform {
-    pushLeft = false
-    pushRight = false
-    pushUp = false
-    pushDown = false
-    if global.grav == 1 pushUp = true
-    else pushDown = true
-}
 else if parentObj == objOneWayWall {
     pushLeft = wallLeft
     pushRight = wallRight
-    pushUp = false
-    pushDown = false
+    pushUp = wallUp
+    pushDown = wallDown
+    
+    if wallGravityDir {
+        if global.grav == 1 pushUp = true
+        else pushDown = true
+    }
 }
 else {
     show_debug_message("parentObj not valid: " + string(parentObj))
@@ -52,21 +49,21 @@ else {
 var carryPlayer = false
 var carryPlayerOnTop = false
 
-if parentObj == objBlock or parentObj == objPlatform {
+if (global.grav == 1 and pushUp) or (global.grav == -1 and pushDown) {
     var overlapPlayer = place_meeting(x, y, objPlayer)
     
     carryPlayer = place_meeting(x, y - global.grav, objPlayer) and not overlapPlayer
     
     carryPlayerOnTop = carryPlayer
-    
-    if parentObj == objBlock {
-        if not carryPlayer and hasVineLeft {
-            carryPlayer = place_meeting(x - 1, y, objPlayer) and not overlapPlayer
-        }
-            
-        if not carryPlayer and hasVineRight {
-            carryPlayer = place_meeting(x + 1, y, objPlayer) and not overlapPlayer
-        }
+}
+
+if parentObj == objBlock {
+    if not carryPlayer and hasVineLeft {
+        carryPlayer = place_meeting(x - 1, y, objPlayer) and not overlapPlayer
+    }
+        
+    if not carryPlayer and hasVineRight {
+        carryPlayer = place_meeting(x + 1, y, objPlayer) and not overlapPlayer
     }
 }
 
@@ -130,6 +127,7 @@ if dY != 0 {
             var pushDY = y + sprite_height / 2 - (objPlayer.y - floor(sprite_get_height(sprPlayerMask) / 2))
             
             with objPlayer var squished = scrMoveContactBlocks(0, pushDY, true)
+            if squished scrKillPlayer()
             
             image_blend = c_lime
         }

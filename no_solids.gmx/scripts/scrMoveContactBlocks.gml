@@ -10,7 +10,6 @@ if dX == 0 and dY == 0 {
 }
 
 if not place_meeting(x + dX, y + dY, objBlock)
-and not (stopOnPlatforms and sign(dY) == global.grav and scrWouldPressPlatform(dY) != noone)
 and scrWouldPressOneWayWall(dX, dY) == noone {
     x += dX
     y += dY
@@ -34,7 +33,7 @@ for (var i = 0; i < abs(dX); i++) {
     }
     */
     
-    var stepX = sign(dX)//min(1, abs(dX) - i) * sign(dX)
+    var stepX = sign(dX)
 
     if place_meeting(x + stepX, y, objBlock) 
         or scrWouldPressOneWayWall(stepX, 0) != noone {
@@ -45,10 +44,10 @@ for (var i = 0; i < abs(dX); i++) {
 }
 
 for (var i = 0; i < abs(dY); i++) {
-    var stepY = sign(dY)//min(1, abs(dY) - i) * sign(dY)
+    var stepY = sign(dY)
     
     if (place_meeting(x, y + stepY, objBlock)
-        or (stopOnPlatforms and sign(dY) == global.grav and scrWouldPressPlatform(stepY) != noone)) {
+        or scrWouldPressOneWayWall(0, stepY) != noone) {
         break
     }
     
