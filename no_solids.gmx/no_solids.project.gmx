@@ -55,7 +55,7 @@
     <script>scripts\scrInit.gml</script>
     <script>scripts\scrKillPlayer.gml</script>
     <scripts name="Block and platform movement">
-      <script>scripts\scrMoveBlock.gml</script>
+      <script>scripts\scrSolidMove.gml</script>
       <script>scripts\scrMoveContactBlocks.gml</script>
       <script>scripts\scrMoveContactBlocksWouldPress.gml</script>
       <script>scripts\scrMoveContactBlocksUndoIfNoPress.gml</script>

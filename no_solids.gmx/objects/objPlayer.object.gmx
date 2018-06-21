@@ -80,11 +80,6 @@ vineJumpYSpeed = 9
             <string>if place_meeting(x, y, objPlayerKiller) {
     scrKillPlayer()
 }
-
-/*
-if place_meeting(x, y, objBlock) {
-    scrKillPlayer()
-}
 </string>
           </argument>
         </arguments>
@@ -271,7 +266,7 @@ if global.grav == -1 {
     drawY++
 }
 
-// I guess we need to do it horizontally too
+// I guess we need to do it horizontally too? Maybe?
 if xScale == -1 {
     drawX++
 }

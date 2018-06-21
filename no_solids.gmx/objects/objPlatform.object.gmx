@@ -25,10 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>hasVineLeft = false
-hasVineRight = false
-
-xRemainder = 0
+            <string>xRemainder = 0
 yRemainder = 0
 </string>
           </argument>

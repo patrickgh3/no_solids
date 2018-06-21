@@ -27,7 +27,7 @@
             <kind>1</kind>
             <string>event_inherited()
 
-blockRight = true
+wallRight = true
 </string>
           </argument>
         </arguments>

@@ -66,10 +66,10 @@ if behavior == 0 {
     xSpeed += xGravity
     ySpeed += yGravity
     
-    scrMoveBlock(xSpeed, ySpeed, true)
+    scrSolidMove(xSpeed, ySpeed, objPlatform)
 }
 else if behavior == 1 {
-    scrMoveBlock((mouse_x - sprite_width / 2) - x, (mouse_y - sprite_height / 2) - y, true)
+    scrSolidMove((mouse_x - x) * 0.2, (mouse_y - y) * 0.2, objPlatform)
 }
 </string>
           </argument>

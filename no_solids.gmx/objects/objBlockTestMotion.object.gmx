@@ -72,13 +72,10 @@ if behavior == 0 {
     xSpeed += xGravity
     ySpeed += yGravity
     
-    scrMoveBlock(xSpeed, ySpeed, false)
+    scrSolidMove(xSpeed, ySpeed, objBlock)
 }
 else if behavior == 1 {
-    scrMoveBlock(
-        ((mouse_x - sprite_width / 2) - x) * 0.2,
-        ((mouse_y - sprite_height / 2) - y) * 0.2,
-        false)
+    scrSolidMove((mouse_x - x) * 0.2, (mouse_y - y) * 0.2, objBlock)
     
     if keyboard_check_pressed(ord('B')) behavior = 3
 }
@@ -91,13 +88,13 @@ else if behavior == 2 {
     var xNext = xstart + lengthdir_x(radius, angle)
     var yNext = ystart + lengthdir_y(radius, angle)
     
-    scrMoveBlock(xNext - x, yNext - y, false)
+    scrSolidMove(xNext - x, yNext - y, objBlock)
 }
 else if behavior == 3 {
     t++
     
     if t mod 50 == 0 {
-        scrMoveBlock(-0.1, 0, false)
+        scrSolidMove(-0.1, 0, objBlock)
     }
     
     if keyboard_check_pressed(ord('B')) behavior = 1

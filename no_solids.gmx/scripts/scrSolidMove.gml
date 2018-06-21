@@ -1,8 +1,9 @@
-/// scrMoveBlock(dX, dY, pushUpOnly)
+/// scrSolidMove(dX, dY, parentObj)
+// parentObj should be objBlock, objPlatform, or objOneWayWall
 
 var dX = argument0
 var dY = argument1
-var pushUpOnly = argument2
+var parentObj = argument2
 
 if dX == 0 and dY == 0 {
     return 0
@@ -20,31 +21,53 @@ if dX == 0 and dY == 0 {
 }
 
 
-var pushLeft = true
-var pushRight = true
-var pushUp = true
-var pushDown = true
+var pushLeft, pushRight, pushUp, pushDown;
 
-if pushUpOnly {
+if parentObj == objBlock {
+    pushLeft = true
+    pushRight = true
+    pushUp = true
+    pushDown = true
+}
+else if parentObj == objPlatform {
     pushLeft = false
     pushRight = false
-    if global.grav == 1 pushDown = false
-    else pushUp = false
+    pushUp = false
+    pushDown = false
+    if global.grav == 1 pushUp = true
+    else pushDown = true
+}
+else if parentObj == objOneWayWall {
+    pushLeft = wallLeft
+    pushRight = wallRight
+    pushUp = false
+    pushDown = false
+}
+else {
+    show_debug_message("parentObj not valid: " + string(parentObj))
+    return 0
 }
 
 
-var overlapPlayer = place_meeting(x, y, objPlayer)
+var carryPlayer = false
+var carryPlayerOnTop = false
 
-var carryPlayer = place_meeting(x, y - global.grav, objPlayer) and not overlapPlayer
-
-var carryPlayerOnTop = carryPlayer
-
-if not carryPlayer and hasVineLeft {
-    carryPlayer = place_meeting(x - 1, y, objPlayer) and not overlapPlayer
-}
+if parentObj == objBlock or parentObj == objPlatform {
+    var overlapPlayer = place_meeting(x, y, objPlayer)
     
-if not carryPlayer and hasVineRight {
-    carryPlayer = place_meeting(x + 1, y, objPlayer) and not overlapPlayer
+    carryPlayer = place_meeting(x, y - global.grav, objPlayer) and not overlapPlayer
+    
+    carryPlayerOnTop = carryPlayer
+    
+    if parentObj == objBlock {
+        if not carryPlayer and hasVineLeft {
+            carryPlayer = place_meeting(x - 1, y, objPlayer) and not overlapPlayer
+        }
+            
+        if not carryPlayer and hasVineRight {
+            carryPlayer = place_meeting(x + 1, y, objPlayer) and not overlapPlayer
+        }
+    }
 }
 
 /*
@@ -72,18 +95,16 @@ if dX != 0 {
         if dX > 0 and pushRight {
             var pushDX = x + sprite_width / 2 - (objPlayer.x - floor(sprite_get_width(sprPlayerMask) / 2))
             
-            //show_debug_message("pushDX: " + string(pushDX))
-            
-            with objPlayer scrMoveContactBlocks(pushDX, 0, true)
+            with objPlayer var squished = scrMoveContactBlocks(pushDX, 0, true)
+            if squished scrKillPlayer()
             
             image_blend = c_lime
         }
         else if dX < 0 and pushLeft {
             var pushDX = x - sprite_width / 2 - (objPlayer.x + floor(sprite_get_width(sprPlayerMask) / 2)) - 1
             
-            //show_debug_message("pushDX: " + string(pushDX))
-            
-            with objPlayer scrMoveContactBlocks(pushDX, 0, true)
+            with objPlayer var squished = scrMoveContactBlocks(pushDX, 0, true)
+            if squished scrKillPlayer()
             
             image_blend = c_lime
         }
@@ -108,14 +129,15 @@ if dY != 0 {
         if dY > 0 and pushDown {
             var pushDY = y + sprite_height / 2 - (objPlayer.y - floor(sprite_get_height(sprPlayerMask) / 2))
             
-            with objPlayer scrMoveContactBlocks(0, pushDY, true)
+            with objPlayer var squished = scrMoveContactBlocks(0, pushDY, true)
             
             image_blend = c_lime
         }
         else if dY < 0 and pushUp {
             var pushDY = y - sprite_height / 2 - (objPlayer.y + floor(sprite_get_height(sprPlayerMask) / 2)) - 1
             
-            with objPlayer scrMoveContactBlocks(0, pushDY, true)
+            with objPlayer var squished = scrMoveContactBlocks(0, pushDY, true)
+            if squished scrKillPlayer()
             
             image_blend = c_lime
         }
