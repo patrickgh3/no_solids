@@ -27,6 +27,8 @@
             <kind>1</kind>
             <string>// Set these variables in instance creation code
 
+event_inherited()
+
 behavior = 0
 
 xSpeed = 1.3
