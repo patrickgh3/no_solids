@@ -33,7 +33,7 @@ for (var i = 0; i < abs(dX); i++) {
     }
     */
     
-    var stepX = min(1, abs(dX) - i) * sign(dX)
+    var stepX = sign(dX)//min(1, abs(dX) - i) * sign(dX)
 
     if place_meeting(x + stepX, y, objBlock) break
     
@@ -41,7 +41,7 @@ for (var i = 0; i < abs(dX); i++) {
 }
 
 for (var i = 0; i < abs(dY); i++) {
-    var stepY = min(1, abs(dY) - i) * sign(dY)
+    var stepY = sign(dY)//min(1, abs(dY) - i) * sign(dY)
     
     if (place_meeting(x, y + stepY, objBlock)
         or (stopOnPlatforms and sign(dY) == global.grav and scrWouldPressPlatform(stepY) != noone)) {

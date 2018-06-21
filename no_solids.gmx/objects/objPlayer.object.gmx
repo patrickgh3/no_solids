@@ -77,7 +77,12 @@ vineJumpYSpeed = 9
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if place_meeting(x, y, objPlayerKiller) or place_meeting(x, y, objBlock) {
+            <string>if place_meeting(x, y, objPlayerKiller) {
+    scrKillPlayer()
+}
+
+/*
+if place_meeting(x, y, objBlock) {
     scrKillPlayer()
 }
 </string>

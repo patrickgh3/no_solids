@@ -19,8 +19,6 @@ if dX == 0 and dY == 0 {
     return 0
 }
 
-show_debug_message("dX: " + string(dX) + " dY: " + string(dY))
-
 
 var pushLeft = true
 var pushRight = true
@@ -35,43 +33,17 @@ if pushUpOnly {
 }
 
 
-var collisionPlayerBefore = place_meeting(x, y, objPlayer)
+var overlapPlayer = place_meeting(x, y, objPlayer)
 
-var carryPlayer = place_meeting(x, y - global.grav * 1.01, objPlayer) and not collisionPlayerBefore
+var carryPlayer = place_meeting(x, y - global.grav, objPlayer) and not overlapPlayer
 
-var vineDist = 1
-
-if not carryPlayer and dX >= 0 {
-    carryPlayer = place_meeting(x - vineDist, y, objPlayer) and not collisionPlayerBefore
+if not carryPlayer {
+    carryPlayer = place_meeting(x - 1, y, objPlayer) and not overlapPlayer
 }
     
-if not carryPlayer and dX <= 0 {
-    carryPlayer = place_meeting(x + vineDist, y, objPlayer) and not collisionPlayerBefore
+if not carryPlayer {
+    carryPlayer = place_meeting(x + 1, y, objPlayer) and not overlapPlayer
 }
-
-
-/*
-// Vine riding behind a moving block
-if object_is_ancestor(object_index, objBlock) {
-    // This number is kinda hacky, I'm not sure how big/small it needs to be, but this works...
-    var vineRideRange = 2
-    
-    if playerRiding == noone and vineLeft != noone {
-        playerRiding = instance_place(x - vineRideRange, y, objPlayer)
-        with playerRiding scrMoveContactBlocks(vineRideRange, 0, true)
-    }
-    
-    if playerRiding == noone and vineRight != noone {
-        playerRiding = instance_place(x + vineRideRange, y, objPlayer)
-        with playerRiding scrMoveContactBlocks(-vineRideRange, 0, true)
-    }
-}
-
-if place_meeting(x, y, playerRiding) {
-    playerRiding = noone
-}
-
-*/
 
 /*
 if object_index == objPushableBlock {
@@ -88,7 +60,6 @@ if object_index == objPushableBlock {
 }
 */
 
-
 if dX != 0 {
     xRemainder -= dX
     x += dX
@@ -97,16 +68,18 @@ if dX != 0 {
     
     if collided {
         if dX > 0 and pushRight {
-            var pushDX = x + sprite_width / 2 - (objPlayer.x - sprite_get_width(sprPlayerMask) / 2) + 1
+            var pushDX = x + sprite_width / 2 - (objPlayer.x - floor(sprite_get_width(sprPlayerMask) / 2))
             
-            show_debug_message("pushDX: " + string(pushDX))
+            //show_debug_message("pushDX: " + string(pushDX))
             
             with objPlayer scrMoveContactBlocks(pushDX, 0, true)
             
             image_blend = c_lime
         }
         else if dX < 0 and pushLeft {
-            var pushDX = x - sprite_width / 2 - (objPlayer.x + sprite_get_width(sprPlayerMask) / 2) - 1
+            var pushDX = x - sprite_width / 2 - (objPlayer.x + floor(sprite_get_width(sprPlayerMask) / 2)) - 1
+            
+            //show_debug_message("pushDX: " + string(pushDX))
             
             with objPlayer scrMoveContactBlocks(pushDX, 0, true)
             
@@ -131,16 +104,14 @@ if dY != 0 {
     
     if collided {
         if dY > 0 and pushDown {
-            //var pushDY = bbox_bottom - objPlayer.bbox_top + 1
-            var pushDY = y + sprite_height / 2 - (objPlayer.y - sprite_get_height(sprPlayerMask) / 2) + 1
+            var pushDY = y + sprite_height / 2 - (objPlayer.y - floor(sprite_get_height(sprPlayerMask) / 2))
             
             with objPlayer scrMoveContactBlocks(0, pushDY, true)
             
             image_blend = c_lime
         }
         else if dY < 0 and pushUp {
-            //var pushDY = bbox_top - objPlayer.bbox_bottom - 1
-            var pushDY = y - sprite_height / 2 - (objPlayer.y + sprite_get_height(sprPlayerMask) / 2) - 1
+            var pushDY = y - sprite_height / 2 - (objPlayer.y + floor(sprite_get_height(sprPlayerMask) / 2)) - 1
             
             with objPlayer scrMoveContactBlocks(0, pushDY, true)
             
@@ -148,10 +119,8 @@ if dY != 0 {
         }
     }
     else if carryPlayer {
-        //show_debug_message(dY)
-        
         with objPlayer scrMoveContactBlocks(0, dY, true)
-            
+        
         image_blend = c_aqua
     }
 }
