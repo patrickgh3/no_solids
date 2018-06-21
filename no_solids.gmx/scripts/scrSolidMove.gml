@@ -54,7 +54,7 @@ if (global.grav == 1 and pushUp) or (global.grav == -1 and pushDown) {
     
     carryPlayer = place_meeting(x, y - global.grav, objPlayer) and not overlapPlayer
     
-    carryPlayerOnTop = carryPlayer
+    if carryPlayer carryPlayerOnTop = true
 }
 
 if parentObj == objBlock {
@@ -67,7 +67,6 @@ if parentObj == objBlock {
     }
 }
 
-/*
 if object_index == objPushableBlock {
     var xPrev = x
     var yPrev = y
@@ -80,7 +79,6 @@ if object_index == objPushableBlock {
     x = xPrev
     y = yPrev
 }
-*/
 
 if dX != 0 {
     xRemainder -= dX

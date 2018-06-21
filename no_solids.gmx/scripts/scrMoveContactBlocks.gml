@@ -18,25 +18,28 @@ and scrWouldPressOneWayWall(dX, dY) == noone {
 }
 
 
-//var playerPushBlockPixels = 2
+var playerPushBlockPixels = 2
 
 for (var i = 0; i < abs(dX); i++) {
-    /*
+    var stepX = sign(dX)
+    
+    var pushableBlock = noone
+    var pushedBlock = false
+    
     if object_index == objPlayer and playerPushBlockPixels > 0 {
-        with instance_place(x + sign(dX), y, objPushableBlock) {
+        pushableBlock = instance_place(x + stepX, y, objPushableBlock)
+        
+        with pushableBlock {
             if place_meeting(x, y + sign(yGravity), objBlock) {
-                scrMoveContactBlocks(sign(dX), 0, false)
+                pushedBlock = not scrMoveContactBlocks(stepX, 0, false)
                 
                 playerPushBlockPixels--
             }
         }
     }
-    */
-    
-    var stepX = sign(dX)
 
-    if place_meeting(x + stepX, y, objBlock) 
-        or scrWouldPressOneWayWall(stepX, 0) != noone {
+    if place_meeting(x + stepX, y, objBlock) or scrWouldPressOneWayWall(stepX, 0) != noone {
+        if pushedBlock pushableBlock.x -= stepX
         break
     }
     
@@ -46,8 +49,7 @@ for (var i = 0; i < abs(dX); i++) {
 for (var i = 0; i < abs(dY); i++) {
     var stepY = sign(dY)
     
-    if (place_meeting(x, y + stepY, objBlock)
-        or scrWouldPressOneWayWall(0, stepY) != noone) {
+    if (place_meeting(x, y + stepY, objBlock) or scrWouldPressOneWayWall(0, stepY) != noone) {
         break
     }
     
