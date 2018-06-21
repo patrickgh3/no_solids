@@ -27,6 +27,9 @@
             <kind>1</kind>
             <string>event_inherited()
 
+vineLeft = noone
+vineRight = noone
+
 // Set these variables in instance creation code
 
 behavior = 0
@@ -105,17 +108,21 @@ if hasVineToggle {
     if keyboard_check_pressed(ord('1')) {
         if vineLeft == noone {
             vineLeft = instance_create(x, y, objVineR)
+            hasVineLeft = true
         } else {
             with vineLeft instance_destroy()
             vineLeft = noone
+            hasVineLeft = false
         }
     }
     else if keyboard_check_pressed(ord('2')) {
         if vineRight == noone {
             vineRight = instance_create(x, y, objVineL)
+            hasVineRight = true
         } else {
             with vineRight instance_destroy()
             vineRight = noone
+            hasVineRight = false
         }
     }
 }

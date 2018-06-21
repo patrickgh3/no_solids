@@ -162,18 +162,10 @@ else if global.grav == -1 and ySpeed &lt; -maxYSpeed {
 }
 
 
-var blockOn = instance_place(x, y + global.grav, objBlock)
+//var blockOn = instance_place(x, y + global.grav, objBlock)
 
-// NOTE: In standard physics this is 1. It's increased as a hack to prevent gradual "slipping" when riding a moving block vine from behind.
-// I'm not sure how big/small this number needs to be, but this works...
-//var vineDist = 1
-//var onVineL = place_meeting(x - vineDist, y, objVineL) and blockOn == noone
-//var onVineR = place_meeting(x + vineDist, y, objVineR) and blockOn == noone
-
-
-var vineDist = 1
-var onVineL = place_meeting(x - vineDist, y, objBlock)
-var onVineR = place_meeting(x + vineDist, y, objBlock)
+var onVineL = place_meeting(x - 1, y, objVineL)// and blockOn == noone
+var onVineR = place_meeting(x + 1, y, objVineR)// and blockOn == noone
 
 animOnVine = false
 

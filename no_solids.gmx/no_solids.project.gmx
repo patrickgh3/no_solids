@@ -22,6 +22,8 @@
     <sprite>sprites\sprBlockMask</sprite>
     <sprite>sprites\sprPushableBlock</sprite>
     <sprite>sprites\sprPlatformUp</sprite>
+    <sprite>sprites\sprOneWayRight</sprite>
+    <sprite>sprites\sprOneWayLeft</sprite>
     <sprite>sprites\sprVineR</sprite>
     <sprite>sprites\sprVineL</sprite>
     <sprite>sprites\sprGravityArrowUp</sprite>
@@ -58,6 +60,7 @@
       <script>scripts\scrMoveContactBlocksWouldPress.gml</script>
       <script>scripts\scrMoveContactBlocksUndoIfNoPress.gml</script>
       <script>scripts\scrWouldPressPlatform.gml</script>
+      <script>scripts\scrWouldPressOneWayWall.gml</script>
     </scripts>
   </scripts>
   <objects name="objects">
@@ -67,6 +70,9 @@
     <object>objects\objPushableBlock</object>
     <object>objects\objPlatform</object>
     <object>objects\objPlatformTestMotion</object>
+    <object>objects\objOneWayWall</object>
+    <object>objects\objOneWayWallLeft</object>
+    <object>objects\objOneWayWallRight</object>
     <object>objects\objSwapBlocksForPlatforms</object>
     <object>objects\objWorld</object>
     <object>objects\objPauseMenu</object>
@@ -94,6 +100,7 @@
     <room>rooms\rManyBoth</room>
     <room>rooms\rAllTest</room>
     <room>rooms\room8</room>
+    <room>rooms\rOneWay</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

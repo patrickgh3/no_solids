@@ -37,11 +37,11 @@ var overlapPlayer = place_meeting(x, y, objPlayer)
 
 var carryPlayer = place_meeting(x, y - global.grav, objPlayer) and not overlapPlayer
 
-if not carryPlayer {
+if not carryPlayer and hasVineLeft {
     carryPlayer = place_meeting(x - 1, y, objPlayer) and not overlapPlayer
 }
     
-if not carryPlayer {
+if not carryPlayer and hasVineRight {
     carryPlayer = place_meeting(x + 1, y, objPlayer) and not overlapPlayer
 }
 
