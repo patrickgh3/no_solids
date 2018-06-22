@@ -1,11 +1,13 @@
-/// scrSolidMove(dX, dY, parentObj)
-// parentObj should be objBlock or objOneWayWall
+/// solidMove(dX, dY, solidType)
+// Moves a solid object by a delta X and Y, carrying and pushing the player if nearby.
+// solidType should be objBlock or objOneWayWall.
 
 var dX = argument0
 var dY = argument1
-var parentObj = argument2
+var solidType = argument2
 
-if dX == 0 and dY == 0 {
+if solidType != objBlock and solidType != objOneWayWall {
+    show_debug_message("Script solidMove: parentObj not valid: " + string(parentObj))
     return 0
 }
 
@@ -23,13 +25,13 @@ if dX == 0 and dY == 0 {
 
 var pushLeft, pushRight, pushUp, pushDown;
 
-if parentObj == objBlock {
+if solidType == objBlock {
     pushLeft = true
     pushRight = true
     pushUp = true
     pushDown = true
 }
-else if parentObj == objOneWayWall {
+else if solidType == objOneWayWall {
     pushLeft = wallLeft
     pushRight = wallRight
     pushUp = wallUp
@@ -39,10 +41,6 @@ else if parentObj == objOneWayWall {
         if global.grav == 1 pushUp = true
         else pushDown = true
     }
-}
-else {
-    show_debug_message("parentObj not valid: " + string(parentObj))
-    return 0
 }
 
 
@@ -57,7 +55,7 @@ if (global.grav == 1 and pushUp) or (global.grav == -1 and pushDown) {
     if carryPlayer carryPlayerOnTop = true
 }
 
-if parentObj == objBlock {
+if solidType == objBlock {
     if not carryPlayer and hasVineLeft {
         carryPlayer = place_meeting(x - 1, y, objPlayer) and not overlapPlayer
     }
@@ -71,7 +69,7 @@ if object_index == objPushableBlock {
     var xPrev = x
     var yPrev = y
     
-    scrMoveContactBlocks(dX, dY, false)
+    moveContactSolids(dX, dY)
     
     dX = x - xPrev
     dY = y - yPrev
@@ -90,7 +88,7 @@ if dX != 0 {
         if dX > 0 and pushRight {
             var pushDX = x + sprite_width / 2 - (objPlayer.x - floor(sprite_get_width(sprPlayerMask) / 2))
             
-            with objPlayer var squished = scrMoveContactBlocks(pushDX, 0, true)
+            with objPlayer var squished = moveContactSolids(pushDX, 0)
             if squished scrKillPlayer()
             
             image_blend = c_lime
@@ -98,7 +96,7 @@ if dX != 0 {
         else if dX < 0 and pushLeft {
             var pushDX = x - sprite_width / 2 - (objPlayer.x + floor(sprite_get_width(sprPlayerMask) / 2)) - 1
             
-            with objPlayer var squished = scrMoveContactBlocks(pushDX, 0, true)
+            with objPlayer var squished = moveContactSolids(pushDX, 0)
             if squished scrKillPlayer()
             
             image_blend = c_lime
@@ -107,7 +105,7 @@ if dX != 0 {
     else if carryPlayer and not (carryPlayerOnTop and objPlayer.carriedXOnTop) {
         if carryPlayerOnTop objPlayer.carriedXOnTop = true
         
-        with objPlayer scrMoveContactBlocks(dX, 0, true)
+        with objPlayer moveContactSolids(dX, 0)
         
         image_blend = c_aqua
     }
@@ -124,7 +122,7 @@ if dY != 0 {
         if dY > 0 and pushDown {
             var pushDY = y + sprite_height / 2 - (objPlayer.y - floor(sprite_get_height(sprPlayerMask) / 2))
             
-            with objPlayer var squished = scrMoveContactBlocks(0, pushDY, true)
+            with objPlayer var squished = moveContactSolids(0, pushDY)
             if squished scrKillPlayer()
             
             image_blend = c_lime
@@ -132,14 +130,14 @@ if dY != 0 {
         else if dY < 0 and pushUp {
             var pushDY = y - sprite_height / 2 - (objPlayer.y + floor(sprite_get_height(sprPlayerMask) / 2)) - 1
             
-            with objPlayer var squished = scrMoveContactBlocks(0, pushDY, true)
+            with objPlayer var squished = moveContactSolids(0, pushDY)
             if squished scrKillPlayer()
             
             image_blend = c_lime
         }
     }
     else if carryPlayer {
-        with objPlayer scrMoveContactBlocks(0, dY, true)
+        with objPlayer moveContactSolids(0, dY)
         
         image_blend = c_aqua
     }

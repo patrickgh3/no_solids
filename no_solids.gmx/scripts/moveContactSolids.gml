@@ -1,16 +1,20 @@
-///scrMoveContactBlocks(dX, dY, stopOnPlatforms)
-// returns 0 if we didn't press up against a block/platform, 1 if we did
+/// moveContactSolids(dX, dY)
+// Moves an object by a delta X and Y, pressing up against any solids in the way instead of passing through them.
+// Returns true if we did press up against a solid, and false if we didn't.
+
+// This script mimics the behavior of move_contact_solid.
+// If no solid is in the way, we move by the full deltas.
+// If there is one in the way, we move pixel-by-pixel up against it; no fractional pixels.
 
 var dX = argument0
 var dY = argument1
-var stopOnPlatforms = argument2
 
 if dX == 0 and dY == 0 {
     return false
 }
 
 if not place_meeting(x + dX, y + dY, objBlock)
-and scrWouldPressOneWayWall(dX, dY) == noone {
+and wouldPressAgainstOneWayWall(dX, dY) == noone {
     x += dX
     y += dY
     
@@ -31,14 +35,14 @@ for (var i = 0; i < abs(dX); i++) {
         
         with pushableBlock {
             if place_meeting(x, y + sign(yGravity), objBlock) {
-                pushedBlock = not scrMoveContactBlocks(stepX, 0, false)
+                pushedBlock = not moveContactSolids(stepX, 0)
                 
                 playerPushBlockPixels--
             }
         }
     }
 
-    if place_meeting(x + stepX, y, objBlock) or scrWouldPressOneWayWall(stepX, 0) != noone {
+    if place_meeting(x + stepX, y, objBlock) or wouldPressAgainstOneWayWall(stepX, 0) != noone {
         if pushedBlock pushableBlock.x -= stepX
         break
     }
@@ -49,7 +53,7 @@ for (var i = 0; i < abs(dX); i++) {
 for (var i = 0; i < abs(dY); i++) {
     var stepY = sign(dY)
     
-    if (place_meeting(x, y + stepY, objBlock) or scrWouldPressOneWayWall(0, stepY) != noone) {
+    if (place_meeting(x, y + stepY, objBlock) or wouldPressAgainstOneWayWall(0, stepY) != noone) {
         break
     }
     

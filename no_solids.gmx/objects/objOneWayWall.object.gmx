@@ -85,10 +85,10 @@ ySpeed = 0
           <argument>
             <kind>1</kind>
             <string>if behavior == 0 {
-    scrSolidMove(xSpeed, ySpeed, objOneWayWall)
+    solidMove(xSpeed, ySpeed, objOneWayWall)
 }
 else if behavior == 1 {
-    scrSolidMove((mouse_x - x) * 0.2, (mouse_y - y) * 0.2, objOneWayWall)
+    solidMove((mouse_x - x) * 0.2, (mouse_y - y) * 0.2, objOneWayWall)
     if keyboard_check_pressed(ord('B')) behavior = 2
 }
 else if behavior == 2 {

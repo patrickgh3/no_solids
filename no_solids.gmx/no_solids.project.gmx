@@ -6,11 +6,22 @@
   <NewExtensions/>
   <sounds name="sound"/>
   <sprites name="sprites">
-    <sprites name="Obstacles">
-      <sprite>sprites\sprSpikeUp</sprite>
-      <sprite>sprites\sprSpikeRight</sprite>
-      <sprite>sprites\sprSpikeLeft</sprite>
-      <sprite>sprites\sprSpikeDown</sprite>
+    <sprites name="Player">
+      <sprite>sprites\sprPlayerMask</sprite>
+      <sprite>sprites\sprPlayerIdle</sprite>
+      <sprite>sprites\sprPlayerRunning</sprite>
+      <sprite>sprites\sprPlayerJump</sprite>
+      <sprite>sprites\sprPlayerFall</sprite>
+      <sprite>sprites\sprPlayerSliding</sprite>
+    </sprites>
+    <sprites name="Blocks and platforms">
+      <sprite>sprites\sprBlockMask</sprite>
+      <sprite>sprites\sprPushableBlock</sprite>
+      <sprite>sprites\sprOneWayUp</sprite>
+      <sprite>sprites\sprOneWayDown</sprite>
+      <sprite>sprites\sprOneWayLeft</sprite>
+      <sprite>sprites\sprOneWayRight</sprite>
+      <sprite>sprites\sprPlatform</sprite>
     </sprites>
     <sprites name="Editor">
       <sprite>sprites\sprPlayerKiller</sprite>
@@ -18,16 +29,14 @@
       <sprite>sprites\sprWorld</sprite>
       <sprite>sprites\sprCamera</sprite>
     </sprites>
-    <sprite>sprites\sprPlayerMask</sprite>
-    <sprite>sprites\sprBlockMask</sprite>
-    <sprite>sprites\sprPushableBlock</sprite>
-    <sprite>sprites\sprOneWayUp</sprite>
-    <sprite>sprites\sprOneWayDown</sprite>
-    <sprite>sprites\sprOneWayLeft</sprite>
-    <sprite>sprites\sprOneWayRight</sprite>
-    <sprite>sprites\sprPlatform</sprite>
-    <sprite>sprites\sprVineR</sprite>
-    <sprite>sprites\sprVineL</sprite>
+    <sprites name="Obstacles">
+      <sprite>sprites\sprSpikeUp</sprite>
+      <sprite>sprites\sprSpikeRight</sprite>
+      <sprite>sprites\sprSpikeLeft</sprite>
+      <sprite>sprites\sprSpikeDown</sprite>
+    </sprites>
+    <sprite>sprites\sprVineLeft</sprite>
+    <sprite>sprites\sprVineRight</sprite>
     <sprite>sprites\sprGravityArrowUp</sprite>
     <sprite>sprites\sprGravityArrowDown</sprite>
   </sprites>
@@ -49,22 +58,17 @@
       <script>scripts\scrResolutionToggleFullscreen.gml</script>
       <script>scripts\scrSetVsync.gml</script>
     </scripts>
-    <scripts name="Utility">
-      <script>scripts\scrQuadInterp.gml</script>
+    <scripts name="Solid movement">
+      <script>scripts\solidMove.gml</script>
+      <script>scripts\moveContactSolids.gml</script>
+      <script>scripts\moveContactSolidsOnlyIfPress.gml</script>
+      <script>scripts\wouldPressAgainstSolids.gml</script>
+      <script>scripts\wouldPressAgainstOneWayWall.gml</script>
     </scripts>
     <script>scripts\scrInit.gml</script>
     <script>scripts\scrKillPlayer.gml</script>
-    <scripts name="Block and platform movement">
-      <script>scripts\scrSolidMove.gml</script>
-      <script>scripts\scrMoveContactBlocks.gml</script>
-      <script>scripts\scrMoveContactBlocksWouldPress.gml</script>
-      <script>scripts\scrMoveContactBlocksUndoIfNoPress.gml</script>
-      <script>scripts\scrWouldPressPlatform.gml</script>
-      <script>scripts\scrWouldPressOneWayWall.gml</script>
-    </scripts>
   </scripts>
   <objects name="objects">
-    <object>objects\objPlayer</object>
     <objects name="Block">
       <object>objects\objBlock</object>
       <object>objects\objBlockTestMotion</object>
@@ -79,14 +83,12 @@
       <object>objects\objPlatform</object>
       <object>objects\objPlatformTestMotion</object>
     </objects>
-    <object>objects\objVineR</object>
-    <object>objects\objVineL</object>
-    <object>objects\objGravityArrowUp</object>
-    <object>objects\objGravityArrowDown</object>
-    <object>objects\objWorld</object>
-    <object>objects\objPauseMenu</object>
-    <object>objects\objCamera</object>
-    <object>objects\objSwapBlocksForPlatforms</object>
+    <objects name="Controllers">
+      <object>objects\objWorld</object>
+      <object>objects\objPauseMenu</object>
+      <object>objects\objCamera</object>
+      <object>objects\objSwapBlocksForPlatforms</object>
+    </objects>
     <objects name="Obstacles">
       <object>objects\objPlayerKiller</object>
       <object>objects\objSpikeUp</object>
@@ -94,6 +96,11 @@
       <object>objects\objSpikeLeft</object>
       <object>objects\objSpikeDown</object>
     </objects>
+    <object>objects\objPlayer</object>
+    <object>objects\objVineLeft</object>
+    <object>objects\objVineRight</object>
+    <object>objects\objGravityArrowUp</object>
+    <object>objects\objGravityArrowDown</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rInit</room>

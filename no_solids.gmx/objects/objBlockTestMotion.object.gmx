@@ -72,10 +72,10 @@ if behavior == 0 {
     xSpeed += xGravity
     ySpeed += yGravity
     
-    scrSolidMove(xSpeed, ySpeed, objBlock)
+    solidMove(xSpeed, ySpeed, objBlock)
 }
 else if behavior == 1 {
-    scrSolidMove((mouse_x - x) * 0.2, (mouse_y - y) * 0.2, objBlock)
+    solidMove((mouse_x - x) * 0.2, (mouse_y - y) * 0.2, objBlock)
     
     if keyboard_check_pressed(ord('B')) behavior = 3
 }
@@ -88,13 +88,13 @@ else if behavior == 2 {
     var xNext = xstart + lengthdir_x(radius, angle)
     var yNext = ystart + lengthdir_y(radius, angle)
     
-    scrSolidMove(xNext - x, yNext - y, objBlock)
+    solidMove(xNext - x, yNext - y, objBlock)
 }
 else if behavior == 3 {
     t++
     
     if t mod 50 == 0 {
-        scrSolidMove(-0.1, 0, objBlock)
+        solidMove(-0.1, 0, objBlock)
     }
     
     if keyboard_check_pressed(ord('B')) behavior = 1
@@ -104,7 +104,7 @@ else if behavior == 3 {
 if hasVineToggle {
     if keyboard_check_pressed(ord('1')) {
         if vineLeft == noone {
-            vineLeft = instance_create(x, y, objVineR)
+            vineLeft = instance_create(x, y, objVineLeft)
             hasVineLeft = true
         } else {
             with vineLeft instance_destroy()
@@ -114,7 +114,7 @@ if hasVineToggle {
     }
     else if keyboard_check_pressed(ord('2')) {
         if vineRight == noone {
-            vineRight = instance_create(x, y, objVineL)
+            vineRight = instance_create(x, y, objVineRight)
             hasVineRight = true
         } else {
             with vineRight instance_destroy()

@@ -287,54 +287,42 @@ scrUpdateResolution()
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_set_color(c_black)
+            <string>if not global.debugMode exit
 
-draw_text(10, 10, fps)
-draw_text(10, 30, fps_real)
+draw_set_color(c_black)
+draw_set_halign(fa_left)
+draw_set_valign(fa_top)
+
+draw_text(10, 10, 'fps: ' + string(fps))
+draw_text(10, 30, 'fps_real: ' + string(fps_real))
 
 if instance_exists(objPlayer) {
-    draw_text(10, 70, objPlayer.x)
-    draw_text(10, 90, objPlayer.y)
+    draw_text(10, 70, 'Player X: ' + string(objPlayer.x))
+    draw_text(10, 90, 'Player Y: ' + string(objPlayer.y))
 }
 
 
-if instance_exists(objBlock) {
-    draw_text(10, 130, objBlock.x)
-    draw_text(10, 150, objBlock.y)
-    
-    draw_text(10, 190, objBlock.bbox_left)
-    draw_text(10, 210, objBlock.bbox_right)
-    draw_text(10, 230, objBlock.bbox_top)
-    draw_text(10, 250, objBlock.bbox_bottom)
+if instance_number(objBlock) == 1 {
+    draw_text(10, 130, 'Block X: ' + string(objBlock.x))
+    draw_text(10, 150, 'Block Y: ' + string(objBlock.y))
 }
 
 
 
-/*if global.debugMode {
-    with objGrowController {
-        draw_set_color(c_black)
-        
-        for (var i=0; i&lt;lengthR; i++) {
-            draw_text(10+20*i, 10, heightsR[i])
-        }
-    }
-}
+/*
+draw_text(10, 10, "Window size: ")
+draw_text(10, 30, window_get_width())
+draw_text(10, 50, window_get_height())
 
-    /*draw_text(10, 10, "Window size: ")
-    draw_text(10, 30, window_get_width())
-    draw_text(10, 50, window_get_height())
-    
-    draw_text(10, 90, "Port: ")
-    draw_text(10, 110, view_wport)
-    draw_text(10, 130, view_hport)
-    
-    draw_text(10, 170, "View: ")
-    draw_text(10, 190, view_wport)
-    draw_text(10, 210, view_hport)
-    
-    draw_text(10, 250, "View enabled: "+string(view_enabled))
-    
-}
+draw_text(10, 90, "Port: ")
+draw_text(10, 110, view_wport)
+draw_text(10, 130, view_hport)
+
+draw_text(10, 170, "View: ")
+draw_text(10, 190, view_wport)
+draw_text(10, 210, view_hport)
+
+draw_text(10, 250, "View enabled: "+string(view_enabled))
 </string>
           </argument>
         </arguments>
