@@ -114,6 +114,7 @@
     <room>rooms\rPushBlocks</room>
     <room>rooms\room8</room>
     <room>rooms\rOneWay</room>
+    <room>rooms\rSpikes</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>
