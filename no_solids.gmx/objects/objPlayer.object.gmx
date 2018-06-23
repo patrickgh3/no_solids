@@ -46,8 +46,8 @@ debugDrawMask = false
 // Constants
 yGravity = 0.4
 
-jump = 8.5
-jump2 = 7
+jumpSpeed = 8.5
+djumpSpeed = 7
 jumpReleaseFactor = 0.45
 
 maxXSpeed = 3
@@ -164,13 +164,13 @@ if not frozen {
         if place_meeting(x, y + global.grav, objBlock)
                 or place_meeting(x, y, objPlatform) // Allow "platform jumping"
                 or wouldPressAgainstOneWayWall(0, global.grav) != noone {
-            ySpeed = -jump * global.grav
+            ySpeed = -jumpSpeed * global.grav
             djump = true
         }
 
         // Double jump
         else if djump {
-            ySpeed = -jump2 * global.grav
+            ySpeed = -djumpSpeed * global.grav
             djump = false
         }
     }
@@ -246,6 +246,7 @@ if ySpeed * global.grav &lt; 0 {
     
     if jumpedThrough != noone {
         var height = sprite_get_height(mask_index)
+        
         if global.grav == 1 {
             y = jumpedThrough.bbox_top - ceil(height / 2)
         } else {
