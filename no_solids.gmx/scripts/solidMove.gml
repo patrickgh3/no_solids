@@ -86,7 +86,8 @@ if dX != 0 {
     
     if collided {
         if dX > 0 and pushRight {
-            var pushDX = x + sprite_width / 2 - (objPlayer.x - floor(sprite_get_width(sprPlayerMask) / 2))
+            var playerWidth = sprite_get_width(objPlayer.mask_index)
+            var pushDX = x + sprite_width / 2 - (objPlayer.x - floor(playerWidth / 2))
             
             with objPlayer var squished = moveContactSolids(pushDX, 0)
             if squished scrKillPlayer()
@@ -94,7 +95,8 @@ if dX != 0 {
             image_blend = c_lime
         }
         else if dX < 0 and pushLeft {
-            var pushDX = x - sprite_width / 2 - (objPlayer.x + floor(sprite_get_width(sprPlayerMask) / 2)) - 1
+            var playerWidth = sprite_get_width(objPlayer.mask_index)
+            var pushDX = x - sprite_width / 2 - (objPlayer.x + floor(playerWidth / 2)) - 1
             
             with objPlayer var squished = moveContactSolids(pushDX, 0)
             if squished scrKillPlayer()
@@ -120,7 +122,8 @@ if dY != 0 {
     
     if collided {
         if dY > 0 and pushDown {
-            var pushDY = y + sprite_height / 2 - (objPlayer.y - floor(sprite_get_height(sprPlayerMask) / 2))
+            var playerHeight = sprite_get_height(objPlayer.mask_index)
+            var pushDY = y + sprite_height / 2 - (objPlayer.y - floor(playerHeight / 2))
             
             with objPlayer var squished = moveContactSolids(0, pushDY)
             if squished scrKillPlayer()
@@ -128,7 +131,8 @@ if dY != 0 {
             image_blend = c_lime
         }
         else if dY < 0 and pushUp {
-            var pushDY = y - sprite_height / 2 - (objPlayer.y + floor(sprite_get_height(sprPlayerMask) / 2)) - 1
+            var playerHeight = sprite_get_height(objPlayer.mask_index)
+            var pushDY = y - sprite_height / 2 - (objPlayer.y + floor(playerHeight / 2)) - 1
             
             with objPlayer var squished = moveContactSolids(0, pushDY)
             if squished scrKillPlayer()
