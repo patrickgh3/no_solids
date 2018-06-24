@@ -115,6 +115,7 @@
     <room>rooms\room8</room>
     <room>rooms\rOneWay</room>
     <room>rooms\rSpikes</room>
+    <room>rooms\rSnap</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

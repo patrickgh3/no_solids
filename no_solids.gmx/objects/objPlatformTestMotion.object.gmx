@@ -31,8 +31,8 @@
 
 behavior = 0
 
-xSpeed = 1.3
-ySpeed = 1.3
+xSpeed = 0
+ySpeed = 0
 xGravity = 0
 yGravity = 0
 </string>

@@ -146,3 +146,16 @@ if dY != 0 {
         image_blend = c_aqua
     }
 }
+
+// If we just "phased through" the player, snap the player on top of us
+if solidType == objOneWayWall
+and dY * global.grav > 0
+and (global.grav == 1 and pushUp) or (global.grav == -1 and pushDown) {
+    with objPlayer {
+        if place_meeting(x, y + dY, other.id) and not place_meeting(x, y, other.id) {
+            moveContactSolids(0, dY)
+            
+            ySpeed = 0
+        }
+    }
+}

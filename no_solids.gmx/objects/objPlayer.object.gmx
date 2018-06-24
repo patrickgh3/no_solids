@@ -246,17 +246,9 @@ else {
 
 // If we just jumped up through a one-way wall, snap to standing on top of it
 if ySpeed * global.grav &lt; 0 {
-    var jumpedThrough = wouldPressAgainstOneWayWall(0, -ySpeed)
-    
-    if jumpedThrough != noone {
-        var height = sprite_get_height(mask_index)
-        
-        if global.grav == 1 {
-            y = jumpedThrough.bbox_top - ceil(height / 2)
-        } else {
-            y = jumpedThrough.bbox_bottom + ceil(height / 2)
-        }
-        
+    if wouldPressAgainstOneWayWall(0, -ySpeed) != noone {
+        moveContactSolids(0, -ySpeed)
+            
         ySpeed = 0
     }
 }
