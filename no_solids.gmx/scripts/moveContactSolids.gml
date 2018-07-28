@@ -13,6 +13,10 @@ if dX == 0 and dY == 0 {
     return false
 }
 
+// Fangame engine movement performs this check, which allows dying when walking off a block
+// onto a spike with a bad align.
+// This check also allows objects which are overlapping blocks to "escape".
+/*
 if not place_meeting(x + dX, y + dY, objBlock)
 and wouldPressAgainstOneWayWall(dX, dY) == noone {
     x += dX
@@ -20,6 +24,7 @@ and wouldPressAgainstOneWayWall(dX, dY) == noone {
     
     return false
 }
+*/
 
 
 var playerPushBlockPixels = 2
@@ -27,6 +32,7 @@ var playerPushBlockPixels = 2
 for (var i = 0; i < abs(dX); i++) {
     var stepX = sign(dX)
     
+    /*
     var pushableBlock = noone
     var pushedBlock = false
     
@@ -46,8 +52,14 @@ for (var i = 0; i < abs(dX); i++) {
         if pushedBlock pushableBlock.x -= stepX
         break
     }
+    */
     
-    x += stepX
+    if object_index == objPushableBlock {
+        show_debug_message('push block move')
+        solidMove(stepX, 0)
+    } else {
+        x += stepX
+    }
 }
 
 for (var i = 0; i < abs(dY); i++) {

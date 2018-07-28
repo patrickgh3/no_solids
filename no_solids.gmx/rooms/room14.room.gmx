@@ -61,9 +61,8 @@
     <instance objName="objPlayer" x="320" y="480" name="inst_01165733" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objOneWayUp" x="144" y="336" name="inst_CE81105E" locked="0" code="xSpeed = 0.5&#xA;ySpeed = -0.25&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objOneWayDown" x="144" y="272" name="inst_A061EDC7" locked="0" code="xSpeed = 0.5&#xA;ySpeed = -0.25&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objOneWayLeft" x="176" y="368" name="inst_C5C99DAC" locked="0" code="xSpeed = 0.25&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objOneWayLeft" x="320" y="304" name="inst_C5C99DAC" locked="0" code="xSpeed = 0.25&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objOneWayRight" x="112" y="368" name="inst_14E73CA9" locked="0" code="xSpeed = 0.25&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objPushableBlock" x="240" y="304" name="inst_EDCD6912" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBlock" x="272" y="512" name="inst_EA22DA9D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBlock" x="304" y="512" name="inst_EA5DE956" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBlock" x="336" y="512" name="inst_5247D889" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -78,6 +77,9 @@
     <instance objName="objVineLeft" x="432" y="448" name="inst_681B6CA8" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBlockWithVines" x="432" y="416" name="inst_75253CE5" locked="0" code="xSpeed = 0.23&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBlockWithVines" x="432" y="448" name="inst_BBD2EB9A" locked="0" code="xSpeed = 0.23&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objPlayer" x="144" y="80" name="inst_F1093C5B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objBlock" x="240" y="480" name="inst_DB578D9B" locked="0" code="xSpeed = 2&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objPushableBlock" x="176" y="368" name="inst_F8AC84D0" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>
