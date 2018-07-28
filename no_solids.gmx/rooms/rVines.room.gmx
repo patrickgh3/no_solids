@@ -91,19 +91,18 @@
     <instance objName="objBlock" x="192" y="352" name="inst_163599D0" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBlock" x="224" y="352" name="inst_1A2436A1" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objPlatform" x="384" y="320" name="inst_F83E3A4D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBlockTestMotion" x="160" y="544" name="inst_E4994EDD" locked="0" code="behavior = 1&#xA;hasVineToggle = true&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBlockTestMotion" x="288" y="352" name="inst_65BE1850" locked="0" code="xSpeed = 0.5&#xA;" scaleX="2" scaleY="2" colour="4294967295" rotation="0"/>
+    <instance objName="objBlockWithVines" x="160" y="544" name="inst_E4994EDD" locked="0" code="behavior = 1&#xA;hasVineToggle = true&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objBlockWithVines" x="288" y="352" name="inst_65BE1850" locked="0" code="xSpeed = 0.5&#xA;" scaleX="2" scaleY="2" colour="4294967295" rotation="0"/>
     <instance objName="objBlock" x="512" y="416" name="inst_8F1A1E03" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBlock" x="544" y="416" name="inst_B8B3A1FE" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBlock" x="576" y="416" name="inst_5F3C4055" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBlock" x="608" y="416" name="inst_74E38C24" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBlock" x="640" y="416" name="inst_81E2A82E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBlock" x="672" y="416" name="inst_5D92493F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objPlatformTestMotion" x="384" y="544" name="inst_B989DFF5" locked="0" code="//behavior = 1&#xA;" scaleX="2" scaleY="2" colour="4294967295" rotation="0"/>
-    <instance objName="objBlockTestMotion" x="608" y="320" name="inst_115E785D" locked="0" code="xSpeed = -1&#xA;xGravity = -0.03&#xA;hasVineToggle = true&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBlockTestMotion" x="736" y="368" name="inst_CEEFAC85" locked="0" code="ySpeed = -1&#xA;yGravity = -0.03&#xA;hasVineToggle = true&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBlockTestMotion" x="768" y="368" name="inst_3C44466B" locked="0" code="ySpeed = 1&#xA;yGravity = 0.03&#xA;hasVineToggle = true&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBlockTestMotion" x="576" y="288" name="inst_4EC870C1" locked="0" code="xSpeed = 1&#xA;xGravity = 0.03&#xA;hasVineToggle = true&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objBlockWithVines" x="608" y="320" name="inst_115E785D" locked="0" code="xSpeed = -1&#xA;xGravity = -0.03&#xA;hasVineToggle = true&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objBlockWithVines" x="736" y="368" name="inst_CEEFAC85" locked="0" code="ySpeed = -1&#xA;yGravity = -0.03&#xA;hasVineToggle = true&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objBlockWithVines" x="768" y="368" name="inst_3C44466B" locked="0" code="ySpeed = 1&#xA;yGravity = 0.03&#xA;hasVineToggle = true&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objBlockWithVines" x="576" y="288" name="inst_4EC870C1" locked="0" code="xSpeed = 1&#xA;xGravity = 0.03&#xA;hasVineToggle = true&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objPushableBlock" x="448" y="384" name="inst_75B24B0C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objPushableBlock" x="544" y="384" name="inst_D3B98EEA" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objPlatform" x="480" y="544" name="inst_CAE38F68" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -111,8 +110,8 @@
     <instance objName="objBlock" x="480" y="640" name="inst_107FD1A2" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBlock" x="448" y="640" name="inst_0B8E6509" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBlock" x="512" y="640" name="inst_90C7BCA8" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBlockTestMotion" x="704" y="480" name="inst_80196230" locked="0" code="xSpeed = -1&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBlockTestMotion" x="768" y="480" name="inst_7BACD08F" locked="0" code="xSpeed = -1.2&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objBlockWithVines" x="704" y="480" name="inst_80196230" locked="0" code="xSpeed = -1&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objBlockWithVines" x="768" y="480" name="inst_7BACD08F" locked="0" code="xSpeed = -1.2&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>

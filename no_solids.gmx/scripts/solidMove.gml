@@ -1,16 +1,10 @@
-/// solidMove(dX, dY, solidType)
+/// solidMove(dX, dY)
 // Moves a solid object by a delta X and Y, carrying and pushing the player if nearby.
-// solidType should be objBlock or objOneWayWall.
 
 var dX = argument0
 var dY = argument1
-var solidType = argument2
 
-if solidType != objBlock and solidType != objOneWayWall {
-    show_debug_message("Script solidMove: parentObj not valid: " + string(parentObj))
-    return 0
-}
-
+if dX == 0 and dY == 0  return 0
 
 xRemainder += dX
 yRemainder += dY
@@ -18,30 +12,14 @@ yRemainder += dY
 dX = round(xRemainder)
 dY = round(yRemainder)
 
-if dX == 0 and dY == 0 {
-    return 0
-}
+if dX == 0 and dY == 0  return 0
 
 
 var pushLeft, pushRight, pushUp, pushDown;
-
-if solidType == objBlock {
-    pushLeft = true
-    pushRight = true
-    pushUp = true
-    pushDown = true
-}
-else if solidType == objOneWayWall {
-    pushLeft = wallLeft
-    pushRight = wallRight
-    pushUp = wallUp
-    pushDown = wallDown
-    
-    if wallGravityDir {
-        if global.grav == 1 pushUp = true
-        else pushDown = true
-    }
-}
+pushLeft = wallLeft
+pushRight = wallRight
+pushUp = wallUp
+pushDown = wallDown
 
 
 var carryPlayer = false
@@ -55,14 +33,12 @@ if (global.grav == 1 and pushUp) or (global.grav == -1 and pushDown) {
     if carryPlayer carryPlayerOnTop = true
 }
 
-if solidType == objBlock {
-    if not carryPlayer and hasVineLeft {
-        carryPlayer = place_meeting(x - 1, y, objPlayer) and not overlapPlayer
-    }
-        
-    if not carryPlayer and hasVineRight {
-        carryPlayer = place_meeting(x + 1, y, objPlayer) and not overlapPlayer
-    }
+if not carryPlayer and hasVineLeft {
+    carryPlayer = place_meeting(x - 1, y, objPlayer) and not overlapPlayer
+}
+    
+if not carryPlayer and hasVineRight {
+    carryPlayer = place_meeting(x + 1, y, objPlayer) and not overlapPlayer
 }
 
 if object_index == objPushableBlock {
@@ -148,14 +124,15 @@ if dY != 0 {
 }
 
 // If we just "phased through" the player, snap the player on top of us
-if solidType == objOneWayWall
-and dY * global.grav > 0
+if dY * global.grav > 0
 and (global.grav == 1 and pushUp) or (global.grav == -1 and pushDown) {
     with objPlayer {
         if place_meeting(x, y + dY, other.id) and not place_meeting(x, y, other.id) {
             moveContactSolids(0, dY)
             
             ySpeed = 0
+            
+            if global.debugSolidVisuals other.image_blend = c_aqua
         }
     }
 }

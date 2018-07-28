@@ -27,19 +27,9 @@
             <kind>1</kind>
             <string>event_inherited()
 
-vineLeft = noone
-vineRight = noone
-
 // Set these variables in instance creation code
 
 behavior = 0
-
-xSpeed = 0
-ySpeed = 0
-xGravity = 0
-yGravity = 0
-
-hasVineToggle = false
 
 t = 0
 </string>
@@ -72,10 +62,10 @@ if behavior == 0 {
     xSpeed += xGravity
     ySpeed += yGravity
     
-    solidMove(xSpeed, ySpeed, objBlock)
+    solidMove(xSpeed, ySpeed)
 }
 else if behavior == 1 {
-    solidMove((mouse_x - x) * 0.2, (mouse_y - y) * 0.2, objBlock)
+    solidMove((mouse_x - x) * 0.2, (mouse_y - y) * 0.2)
     
     if keyboard_check_pressed(ord('B')) behavior = 3
 }
@@ -88,40 +78,16 @@ else if behavior == 2 {
     var xNext = xstart + lengthdir_x(radius, angle)
     var yNext = ystart + lengthdir_y(radius, angle)
     
-    solidMove(xNext - x, yNext - y, objBlock)
+    solidMove(xNext - x, yNext - y)
 }
 else if behavior == 3 {
     t++
     
     if t mod 50 == 0 {
-        solidMove(-0.1, 0, objBlock)
+        solidMove(-0.1, 0)
     }
     
     if keyboard_check_pressed(ord('B')) behavior = 1
-}
-
-
-if hasVineToggle {
-    if keyboard_check_pressed(ord('1')) {
-        if vineLeft == noone {
-            vineLeft = instance_create(x, y, objVineLeft)
-            hasVineLeft = true
-        } else {
-            with vineLeft instance_destroy()
-            vineLeft = noone
-            hasVineLeft = false
-        }
-    }
-    else if keyboard_check_pressed(ord('2')) {
-        if vineRight == noone {
-            vineRight = instance_create(x, y, objVineRight)
-            hasVineRight = true
-        } else {
-            with vineRight instance_destroy()
-            vineRight = noone
-            hasVineRight = false
-        }
-    }
 }
 
 if instance_exists(vineLeft) {
@@ -132,6 +98,33 @@ if instance_exists(vineRight) {
     vineRight.x = x
     vineRight.y = y
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="4">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>vineLeft = instance_place(x, y, objVineLeft)
+hasVineLeft = vineLeft != noone
+
+vineRight = instance_place(x, y, objVineRight)
+hasVineRight = vineRight != noone
 </string>
           </argument>
         </arguments>

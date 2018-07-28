@@ -19,6 +19,7 @@
       <sprite>sprites\sprPlayerJump</sprite>
       <sprite>sprites\sprPlayerFall</sprite>
       <sprite>sprites\sprPlayerSliding</sprite>
+      <sprite>sprites\sprPlayerBullet</sprite>
     </sprites>
     <sprites name="Blocks and platforms">
       <sprite>sprites\sprBlockMask</sprite>
@@ -73,6 +74,21 @@
       <object>objects\objPauseMenu</object>
       <object>objects\objCamera</object>
     </objects>
+    <objects name="Player">
+      <object>objects\objPlayer</object>
+      <object>objects\objPlayerBullet</object>
+    </objects>
+    <objects name="Walls">
+      <object>objects\objWall</object>
+      <object>objects\objBlock</object>
+      <object>objects\objPushableBlock</object>
+      <object>objects\objOneWayUp</object>
+      <object>objects\objOneWayDown</object>
+      <object>objects\objOneWayLeft</object>
+      <object>objects\objOneWayRight</object>
+      <object>objects\objPlatform</object>
+      <object>objects\objBlockWithVines</object>
+    </objects>
     <objects name="Killers">
       <object>objects\objPlayerKiller</object>
       <object>objects\objSpikeUp</object>
@@ -80,31 +96,12 @@
       <object>objects\objSpikeLeft</object>
       <object>objects\objSpikeDown</object>
     </objects>
-    <objects name="Blocks">
-      <object>objects\objBlock</object>
-      <object>objects\objMovingBlock</object>
-      <object>objects\objPushableBlock</object>
-    </objects>
-    <objects name="One way walls">
-      <object>objects\objOneWayWall</object>
-      <object>objects\objOneWayWallUp</object>
-      <object>objects\objOneWayWallDown</object>
-      <object>objects\objOneWayWallLeft</object>
-      <object>objects\objOneWayWallRight</object>
-      <object>objects\objPlatform</object>
-    </objects>
     <objects name="Level elements">
       <object>objects\objVineLeft</object>
       <object>objects\objVineRight</object>
       <object>objects\objGravityArrowUp</object>
       <object>objects\objGravityArrowDown</object>
     </objects>
-    <objects name="Old testing">
-      <object>objects\objSwapBlocksForPlatforms</object>
-      <object>objects\objBlockTestMotion</object>
-      <object>objects\objPlatformTestMotion</object>
-    </objects>
-    <object>objects\objPlayer</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rInit</room>
@@ -114,9 +111,6 @@
       <room>rooms\rRandomBlocks</room>
       <room>rooms\rVines</room>
       <room>rooms\rManyBlocks</room>
-      <room>rooms\rManyBlocks2</room>
-      <room>rooms\rManyPlatforms</room>
-      <room>rooms\rManyBoth</room>
       <room>rooms\rPushBlocks</room>
       <room>rooms\room8</room>
       <room>rooms\rOneWay</room>

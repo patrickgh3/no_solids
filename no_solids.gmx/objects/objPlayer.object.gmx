@@ -85,11 +85,6 @@ var grounded = place_meeting(x, y + global.grav, objBlock)
         or wouldPressAgainstOneWayWall(0, global.grav) != noone
 
 
-if leftDown or rightDown {
-    if rightDown xScale = 1
-    else if leftDown xScale = -1
-}
-
 if onVineLeft or onVineRight {
     if onVineLeft xScale = 1
     else xScale = -1
@@ -144,6 +139,7 @@ var jumpDown = scrButtonCheck(global.jumpButton)
 var jumpPressed = scrButtonCheckPressed(global.jumpButton)
 var jumpReleased = scrButtonCheckReleased(global.jumpButton)
 
+var shootPressed = scrButtonCheckPressed(global.shootButton)
 
 var onVineLeft = place_meeting(x - 1, y, objVineRight)
 var onVineRight = place_meeting(x + 1, y, objVineLeft)
@@ -151,8 +147,19 @@ var onVineRight = place_meeting(x + 1, y, objVineLeft)
 
 xSpeed = 0
 
-if rightDown xSpeed = maxXSpeed
-else if leftDown xSpeed = -maxXSpeed
+if rightDown {
+    xSpeed = maxXSpeed
+    xScale = 1
+}
+else if leftDown {
+    xSpeed = -maxXSpeed
+    xScale = -1
+}
+
+if shootPressed and instance_number(objPlayerBullet) &lt; 4 {
+    var bullet = instance_create(x, y, objPlayerBullet);
+    bullet.xSpeed = 16 * other.xScale
+}
 
 
 if jumpPressed {
@@ -192,7 +199,7 @@ if onVineLeft or onVineRight {
     //ySpeed = 2 * global.grav
     ySpeed = -yGravity * global.grav
     
-    if not frozen and ((onVineLeft and rightDown) or (onVineRight and leftDown)) {
+    if (onVineLeft and rightDown) or (onVineRight and leftDown) {
         // Vine jump
         if jumpDown {
             if onVineLeft xSpeed = vineJumpXSpeed
@@ -242,6 +249,7 @@ else {
 
 
 // If we just jumped up through a one-way wall, snap to standing on top of it
+/*
 if ySpeed * global.grav &lt; 0 {
     if wouldPressAgainstOneWayWall(0, -ySpeed) != noone {
         moveContactSolids(0, -ySpeed)
@@ -249,6 +257,7 @@ if ySpeed * global.grav &lt; 0 {
         ySpeed = 0
     }
 }
+*/
 
 
 carriedXOnTop = false

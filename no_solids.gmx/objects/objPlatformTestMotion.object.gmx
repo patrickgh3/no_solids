@@ -66,10 +66,10 @@ if behavior == 0 {
     xSpeed += xGravity
     ySpeed += yGravity
     
-    solidMove(xSpeed, ySpeed, objOneWayWall)
+    solidMove(xSpeed, ySpeed)
 }
 else if behavior == 1 {
-    solidMove((mouse_x - x) * 0.2, (mouse_y - y) * 0.2, objOneWayWall)
+    solidMove((mouse_x - x) * 0.2, (mouse_y - y) * 0.2)
 }
 </string>
           </argument>

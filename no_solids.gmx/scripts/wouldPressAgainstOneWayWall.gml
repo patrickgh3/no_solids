@@ -3,9 +3,9 @@
 var dX = argument0
 var dY = argument1
 
-if not place_meeting(x + dX, y + dY, objOneWayWall) return noone
+if not place_meeting(x + dX, y + dY, objWall) return noone
 
-with objOneWayWall {
+with objWall {
     if place_meeting(x, y, other) continue
     
     // We have to use "with other" for vertical collisions, instead of copying the horizontal section below.

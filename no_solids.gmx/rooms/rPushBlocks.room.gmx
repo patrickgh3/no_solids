@@ -64,12 +64,12 @@
     <instance objName="objBlock" x="672" y="416" name="inst_9473C6ED" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objPushableBlock" x="512" y="384" name="inst_BB6DEDF9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objPushableBlock" x="384" y="352" name="inst_E01EBCCE" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBlockTestMotion" x="832" y="96" name="inst_3D5D0792" locked="0" code="xSpeed = 1&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objBlockWithVines" x="832" y="96" name="inst_3D5D0792" locked="0" code="xSpeed = 1&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objPushableBlock" x="896" y="32" name="inst_B00D448C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objPushableBlock" x="704" y="32" name="inst_E482E7C2" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBlockTestMotion" x="624" y="96" name="inst_5475D2D5" locked="0" code="xSpeed = 1&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBlockTestMotion" x="176" y="448" name="inst_02805A3F" locked="0" code="behavior = 2&#xA;&#xA;hasVineToggle = true&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBlockTestMotion" x="192" y="704" name="inst_5C995351" locked="0" code="behavior = 1&#xA;&#xA;hasVineToggle = true" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objBlockWithVines" x="624" y="96" name="inst_5475D2D5" locked="0" code="xSpeed = 1&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objBlockWithVines" x="176" y="448" name="inst_02805A3F" locked="0" code="behavior = 2&#xA;&#xA;hasVineToggle = true&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objBlockWithVines" x="192" y="704" name="inst_5C995351" locked="0" code="behavior = 1&#xA;&#xA;hasVineToggle = true" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBlock" x="80" y="576" name="inst_4A6151CC" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBlock" x="112" y="576" name="inst_E761A276" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBlock" x="144" y="576" name="inst_35564D88" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -85,7 +85,7 @@
     <instance objName="objBlock" x="864" y="416" name="inst_27FC0B60" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBlock" x="896" y="416" name="inst_9C486E93" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBlock" x="928" y="416" name="inst_B829C6A0" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objOneWayWallRight" x="288" y="384" name="inst_9E1418BC" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objOneWayRight" x="288" y="384" name="inst_9E1418BC" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBlock" x="288" y="416" name="inst_253CBD0C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBlock" x="320" y="416" name="inst_0AE65C06" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>

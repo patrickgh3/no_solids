@@ -219,8 +219,7 @@ if (!window_get_fullscreen()) {
           <argument>
             <kind>1</kind>
             <string>if global.debugSolidVisuals {
-    with objBlock image_blend = c_white
-    with objOneWayWall image_blend = c_white
+    with objWall image_blend = c_white
 }
 </string>
           </argument>
