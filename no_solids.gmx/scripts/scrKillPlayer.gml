@@ -1,6 +1,6 @@
 /// scrKillPlayer()
 
-if not (global.debugMode and global.debugNoDeath) {
+if not global.debugNoDeath {
     with objPlayer {
         instance_destroy()
     }

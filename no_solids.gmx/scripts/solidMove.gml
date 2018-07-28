@@ -92,7 +92,7 @@ if dX != 0 {
             with objPlayer var squished = moveContactSolids(pushDX, 0)
             if squished scrKillPlayer()
             
-            image_blend = c_lime
+            if global.debugSolidVisuals image_blend = c_lime
         }
         else if dX < 0 and pushLeft {
             var playerWidth = sprite_get_width(objPlayer.mask_index)
@@ -101,7 +101,7 @@ if dX != 0 {
             with objPlayer var squished = moveContactSolids(pushDX, 0)
             if squished scrKillPlayer()
             
-            image_blend = c_lime
+            if global.debugSolidVisuals image_blend = c_lime
         }
     }
     else if carryPlayer and not (carryPlayerOnTop and objPlayer.carriedXOnTop) {
@@ -109,7 +109,7 @@ if dX != 0 {
         
         with objPlayer moveContactSolids(dX, 0)
         
-        image_blend = c_aqua
+        if global.debugSolidVisuals image_blend = c_aqua
     }
 }
 
@@ -128,7 +128,7 @@ if dY != 0 {
             with objPlayer var squished = moveContactSolids(0, pushDY)
             if squished scrKillPlayer()
             
-            image_blend = c_lime
+            if global.debugSolidVisuals image_blend = c_lime
         }
         else if dY < 0 and pushUp {
             var playerHeight = sprite_get_height(objPlayer.mask_index)
@@ -137,13 +137,13 @@ if dY != 0 {
             with objPlayer var squished = moveContactSolids(0, pushDY)
             if squished scrKillPlayer()
             
-            image_blend = c_lime
+            if global.debugSolidVisuals image_blend = c_lime
         }
     }
     else if carryPlayer {
         with objPlayer moveContactSolids(0, dY)
         
-        image_blend = c_aqua
+        if global.debugSolidVisuals image_blend = c_aqua
     }
 }
 

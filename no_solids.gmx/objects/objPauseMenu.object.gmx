@@ -28,6 +28,8 @@
             <string>select = 0
 numitems = 5
 canChangeWindow = true
+
+sprite_index = -1
 </string>
           </argument>
         </arguments>
@@ -76,11 +78,13 @@ canChangeWindow = true
             <string>if scrButtonCheckPressed(global.downButton) {
     select++
 }
+
 if scrButtonCheckPressed(global.upButton) {
     select--
 }
-if select &lt; 0 select = numitems-1
-if select &gt;= numitems select = 0
+
+if select &lt; 0          select = numitems - 1
+if select &gt;= numitems  select = 0
 
 if select == 0 {
     if scrButtonCheckPressed(global.jumpButton) {
@@ -165,6 +169,7 @@ var dy = 20
 draw_text(xx-20, yy+select*dy, '&gt;')
 
 draw_text(xx, yy, 'Resume')
+
 yy += dy
 var r = ''
 if window_get_width() != view_wport[0] or window_get_height() != view_hport[0] {
@@ -172,39 +177,19 @@ if window_get_width() != view_wport[0] or window_get_height() != view_hport[0] {
 }
 if window_get_fullscreen() r = ' (Fullscreen)'
 draw_text(xx, yy, 'Resolution: '+string(view_wport)+' x '+string(view_hport)+r)
+
 yy += dy
 var wm = 'Windowed'
 if window_get_fullscreen() wm = 'Fullscreen'
 draw_text(xx, yy, 'Window Mode: '+wm)
+
 yy += dy
 var vm = 'Off'
 if global.vsyncMode vm = 'On'
 draw_text(xx, yy, 'Vsync: '+vm)
+
 yy += dy
 draw_text(xx, yy, 'Quit')
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="8" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// Nothing
 </string>
           </argument>
         </arguments>

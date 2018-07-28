@@ -29,7 +29,6 @@
 ySpeed = 0
 
 djump = true
-frozen = false
 
 // Only one block per step is allowed to carry the player horizontally on top of a block.
 // (e.g. there's a block moving at speed 3 and another one at speed 6 - the player should never move at speed 9)
@@ -152,32 +151,30 @@ var onVineRight = place_meeting(x + 1, y, objVineLeft)
 
 xSpeed = 0
 
-if not frozen {
-    if rightDown xSpeed = maxXSpeed
-    else if leftDown xSpeed = -maxXSpeed
-    
-    
-    if jumpPressed {
-        // Single jump
-        if place_meeting(x, y + global.grav, objBlock)
-                or place_meeting(x, y, objPlatform) // Allow "platform jumping"
-                or wouldPressAgainstOneWayWall(0, global.grav) != noone {
-                ySpeed = -jumpSpeed * global.grav
-            djump = true
-        }
+if rightDown xSpeed = maxXSpeed
+else if leftDown xSpeed = -maxXSpeed
 
-        // Double jump
-        else if djump {
-            ySpeed = -djumpSpeed * global.grav
-            djump = false
-        }
+
+if jumpPressed {
+    // Single jump
+    if place_meeting(x, y + global.grav, objBlock)
+            or place_meeting(x, y, objPlatform) // Allow "platform jumping"
+            or wouldPressAgainstOneWayWall(0, global.grav) != noone {
+            ySpeed = -jumpSpeed * global.grav
+        djump = true
     }
-    
-    // Release jump
-    // Note that pressing and releasing jump on the same frame is a jump cancel
-    if jumpReleased and ySpeed * global.grav &lt; 0 {
-        ySpeed *= jumpReleaseFactor
+
+    // Double jump
+    else if djump {
+        ySpeed = -djumpSpeed * global.grav
+        djump = false
     }
+}
+
+// Release jump
+// Note that pressing and releasing jump on the same frame is a jump cancel
+if jumpReleased and ySpeed * global.grav &lt; 0 {
+    ySpeed *= jumpReleaseFactor
 }
 
 

@@ -6,6 +6,12 @@
   <NewExtensions/>
   <sounds name="sound"/>
   <sprites name="sprites">
+    <sprites name="Editor">
+      <sprite>sprites\sprPlayerKiller</sprite>
+      <sprite>sprites\sprPause</sprite>
+      <sprite>sprites\sprWorld</sprite>
+      <sprite>sprites\sprCamera</sprite>
+    </sprites>
     <sprites name="Player">
       <sprite>sprites\sprPlayerMask</sprite>
       <sprite>sprites\sprPlayerIdle</sprite>
@@ -22,12 +28,6 @@
       <sprite>sprites\sprOneWayLeft</sprite>
       <sprite>sprites\sprOneWayRight</sprite>
       <sprite>sprites\sprPlatform</sprite>
-    </sprites>
-    <sprites name="Editor">
-      <sprite>sprites\sprPlayerKiller</sprite>
-      <sprite>sprites\sprPause</sprite>
-      <sprite>sprites\sprWorld</sprite>
-      <sprite>sprites\sprCamera</sprite>
     </sprites>
     <sprites name="Obstacles">
       <sprite>sprites\sprSpikeUp</sprite>
@@ -65,57 +65,64 @@
       <script>scripts\wouldPressAgainstSolids.gml</script>
       <script>scripts\wouldPressAgainstOneWayWall.gml</script>
     </scripts>
-    <script>scripts\scrInit.gml</script>
     <script>scripts\scrKillPlayer.gml</script>
   </scripts>
   <objects name="objects">
-    <objects name="Block">
-      <object>objects\objBlock</object>
-      <object>objects\objBlockTestMotion</object>
-      <object>objects\objPushableBlock</object>
-    </objects>
-    <objects name="One Way Wall">
-      <object>objects\objOneWayWall</object>
-      <object>objects\objOneWayWallUp</object>
-      <object>objects\objOneWayWallDown</object>
-      <object>objects\objOneWayWallLeft</object>
-      <object>objects\objOneWayWallRight</object>
-      <object>objects\objPlatform</object>
-      <object>objects\objPlatformTestMotion</object>
-    </objects>
     <objects name="Controllers">
       <object>objects\objWorld</object>
       <object>objects\objPauseMenu</object>
       <object>objects\objCamera</object>
-      <object>objects\objSwapBlocksForPlatforms</object>
     </objects>
-    <objects name="Obstacles">
+    <objects name="Killers">
       <object>objects\objPlayerKiller</object>
       <object>objects\objSpikeUp</object>
       <object>objects\objSpikeRight</object>
       <object>objects\objSpikeLeft</object>
       <object>objects\objSpikeDown</object>
     </objects>
+    <objects name="Blocks">
+      <object>objects\objBlock</object>
+      <object>objects\objMovingBlock</object>
+      <object>objects\objPushableBlock</object>
+    </objects>
+    <objects name="One way walls">
+      <object>objects\objOneWayWall</object>
+      <object>objects\objOneWayWallUp</object>
+      <object>objects\objOneWayWallDown</object>
+      <object>objects\objOneWayWallLeft</object>
+      <object>objects\objOneWayWallRight</object>
+      <object>objects\objPlatform</object>
+    </objects>
+    <objects name="Level elements">
+      <object>objects\objVineLeft</object>
+      <object>objects\objVineRight</object>
+      <object>objects\objGravityArrowUp</object>
+      <object>objects\objGravityArrowDown</object>
+    </objects>
+    <objects name="Old testing">
+      <object>objects\objSwapBlocksForPlatforms</object>
+      <object>objects\objBlockTestMotion</object>
+      <object>objects\objPlatformTestMotion</object>
+    </objects>
     <object>objects\objPlayer</object>
-    <object>objects\objVineLeft</object>
-    <object>objects\objVineRight</object>
-    <object>objects\objGravityArrowUp</object>
-    <object>objects\objGravityArrowDown</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rInit</room>
-    <room>rooms\room9</room>
-    <room>rooms\rRandomBlocks</room>
-    <room>rooms\rVines</room>
-    <room>rooms\rManyBlocks</room>
-    <room>rooms\rManyBlocks2</room>
-    <room>rooms\rManyPlatforms</room>
-    <room>rooms\rManyBoth</room>
-    <room>rooms\rPushBlocks</room>
-    <room>rooms\room8</room>
-    <room>rooms\rOneWay</room>
-    <room>rooms\rSpikes</room>
-    <room>rooms\rSnap</room>
+    <room>rooms\room14</room>
+    <rooms name="Old test rooms">
+      <room>rooms\room9</room>
+      <room>rooms\rRandomBlocks</room>
+      <room>rooms\rVines</room>
+      <room>rooms\rManyBlocks</room>
+      <room>rooms\rManyBlocks2</room>
+      <room>rooms\rManyPlatforms</room>
+      <room>rooms\rManyBoth</room>
+      <room>rooms\rPushBlocks</room>
+      <room>rooms\room8</room>
+      <room>rooms\rOneWay</room>
+      <room>rooms\rSpikes</room>
+      <room>rooms\rSnap</room>
+    </rooms>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

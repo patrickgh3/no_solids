@@ -25,9 +25,28 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>scrInit()
+            <string>global.debugMode = true
+global.debugNoDeath = false
+global.debugSolidVisuals = false
 
-sprite_index = -1 // Don't draw sprite.
+global.grav = 1
+
+global.controllerMode = false
+global.controllerDelay = -1
+global.controllerEnabled = true
+global.controllerDelayLength = 5
+
+global.resolution_index = 0
+
+randomize()
+
+scrResolutionInit()
+
+alarm[5] = 1 // scrLoadConfig
+
+alarm[6] = 10 // room_goto_next
+
+sprite_index = -1
 </string>
           </argument>
         </arguments>
@@ -182,6 +201,32 @@ if (!window_get_fullscreen()) {
         </arguments>
       </action>
     </event>
+    <event eventtype="3" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if global.debugSolidVisuals {
+    with objBlock image_blend = c_white
+    with objOneWayWall image_blend = c_white
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
@@ -208,11 +253,19 @@ if keyboard_check_pressed(vk_escape) and not instance_exists(objPauseMenu) {
 // Reload room
 if scrButtonCheckPressed(global.restartButton) {
     global.grav = 1
-    room_goto(room)
+    room_restart()
 }
 
 if global.debugMode {
-    // Switch rooms.
+    if keyboard_check_pressed(ord('G')) {
+        global.debugNoDeath = not global.debugNoDeath
+    }
+    
+    if keyboard_check_pressed(ord('V')) {
+        global.debugSolidVisuals = not global.debugSolidVisuals
+    }
+
+    // Switch rooms
     if keyboard_check_pressed(vk_pageup) and room != room_last {
         global.grav = 1
         room_goto_next()
@@ -222,7 +275,7 @@ if global.debugMode {
         room_goto_previous()
     }
     
-    // Move player to cursor.
+    // Move player to cursor
     if keyboard_check(vk_tab) {
         with objPlayer {
             x = mouse_x
@@ -230,7 +283,7 @@ if global.debugMode {
         }
     }
     
-    // Debug toggle frame rate.
+    // Debug slowdown
     if keyboard_check(ord('F')) {
         room_speed = 2
     } else {
@@ -293,19 +346,19 @@ draw_set_color(c_black)
 draw_set_halign(fa_left)
 draw_set_valign(fa_top)
 
-draw_text(10, 10, 'fps: ' + string(fps))
-draw_text(10, 30, 'fps_real: ' + string(fps_real))
+draw_text(10, 10, 'fps_real: ' + string(fps_real))
 
 if instance_exists(objPlayer) {
-    draw_text(10, 70, 'Player X: ' + string(objPlayer.x))
-    draw_text(10, 90, 'Player Y: ' + string(objPlayer.y))
+    draw_text(10, 50, 'Player X: ' + string(objPlayer.x))
+    draw_text(10, 70, 'Player Y: ' + string(objPlayer.y))
 }
 
-
+/*
 if instance_number(objBlock) == 1 {
     draw_text(10, 130, 'Block X: ' + string(objBlock.x))
     draw_text(10, 150, 'Block Y: ' + string(objBlock.y))
 }
+*/
 
 
 
